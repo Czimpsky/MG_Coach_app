@@ -1,0 +1,117 @@
+*{
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-size: 15px;
+    font-family: 'Montserrat',;
+    max-width: 100%;
+}
+
+main{
+    background-color: rgb(232, 244, 244);
+}
+
+/* navbar */
+
+.navbar-container{
+    background-color: rgb(37,54,75);
+    color: white;
+    height: 100px;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo h1 a{
+    color: white;
+    text-decoration: none;
+    letter-spacing: -4px;
+    font-stretch: 150%;
+}
+
+.menu-container{
+    list-style: none;
+    font-weight: 100;
+}
+
+.menu-container li {
+    padding: 1.5vw;
+    display: inline;
+}
+
+.menu-container li a {
+    color: white;
+    text-decoration: none;
+}
+
+.menu-container li a:hover {
+    font-weight: 200;
+}
+
+/* main */
+
+.runner{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    max-width: 100%;
+}
+
+/* footer */
+
+.content-footer{
+    background-color: rgb(37,54,75);
+    height: 100px;
+    width: 100%;
+}
+
+.rights-footer{
+    background-color: rgb(5,97,108);
+}
+
+.rights-footer p{
+    color: white;
+    font-weight: 100;
+    text-align: center;
+    padding: 5px 0;
+}
+
+/* kontakt-main */
+.info-container h2{
+    font-size: 1.6rem;
+    padding-top: 0px;
+    font-weight: 400;
+    margin-bottom: 30px;
+}
+
+.info-container h3{
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 300;
+}
+
+.info-container h4{
+    text-align: center;
+    font-size: 1.2rem;
+    font-weight: 200;
+}
+
+.info-container{
+    padding-top: 20px;
+}
+
+.contact-container{
+    background-color: white;
+    border-radius: 10px;
+    padding: 5px;
+    margin: 20px 0;
+    -webkit-box-shadow: 1px 1px 3px 0px rgb(37, 54, 75);
+    -moz-box-shadow: 1px 1px 3px 0px rgb(37, 54, 75);
+    box-shadow: 2px 2px 3px 0px rgb(37, 54, 75);
+}
+
