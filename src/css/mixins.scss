@@ -1,0 +1,75 @@
+@use 'typography.scss';
+@use 'colors.scss';
+
+@mixin input{
+    background-color: colors.$color-background;
+    color: colors.$color-navy;
+    border: none;
+    border-radius: 20px;
+    padding: 5px;
+
+    &::placeholder{
+        color: colors.$color-light
+    }
+}
+
+@mixin button{
+    background-color: colors.$color-medium;
+    color: white;
+    border-radius: 20px;
+    border: none;
+    margin: 20px 3% 0;
+    width: 94%;
+    padding: 5px;
+
+    &:hover{
+        transition: ease-in-out 0.3s;
+        background-color: colors.$color-light;
+    }
+}
+
+@mixin shadow{
+    -webkit-box-shadow: 1px 1px 3px 0px colors.$color-navy;
+    -moz-box-shadow: 1px 1px 3px 0px colors.$color-navy;
+    box-shadow: 1px 1px 3px 0px colors.$color-navy;
+}
+
+@mixin white-box{
+    padding: 15px;
+    background-color: white;
+    border-radius: 10px;
+}
+
+@mixin table{
+    margin-top: 15px;
+        width: 100%;
+
+        thead{
+
+            th{
+                background-color: colors.$color-navy;
+                color: white;
+                font-weight: typography.$font-weight-regular;
+                padding: 5px; 
+            }
+        }
+
+        tbody{
+            color: colors.$color-navy;
+
+            tr{
+                border-bottom: 1px solid colors.$color-light;
+
+                td{
+                    font-weight: typography.$font-weight-regular;
+                    padding: 5px;
+
+                    i{
+                        scale: 1.5;
+                        color: colors.$color-medium;
+                    }
+                }
+            }
+        }    
+    
+}
