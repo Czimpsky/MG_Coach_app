@@ -43,49 +43,143 @@ body {
     button{
         @include mixins.button;
     }
+
+    .runner{
+        max-width: 100%;
+        margin: 0 auto;
+    }
     
     /* navbar */
-    .navbar-container{
+    #navbar{
+        position: absolute;
         background-color: colors.$color-navy;
         color: colors.$color-white;
         height: 100px;
-        padding: 0 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
+        width: 100%;
+        z-index: 2;
+        
+        .navbar-content{
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 30px;
+            display: flex;
+            justify-content: space-between;
+            z-index: 3;
+        
+            #logo{
+                fill: white;
+                display: flex;
+                align-items: center;
+                width: 70px;
+                height: auto;
+                transition: transform 0.3s ease-in-out;
+                transform-origin: top left;
+            }
 
-        .logo h1 a{
-            color: colors.$color-white;
-            text-decoration: none;
-            letter-spacing: -4px;
-            font-stretch: 150%;
-        }
+            .big-logo{
+                transform: scale(2);
+            }
 
-        .menu-container{
-            list-style: none;
-            font-weight: typography.$font-weight-light;
-
-            li {
-                padding: 1.5vw;
-                display: inline;
-
-                a {
-                    color: colors.$color-white;
-                    text-decoration: none;
+            .menu-content{
+                list-style: none;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+                font-weight: typography.$font-weight-light;
+    
+                li {
+                    padding: 0 1.5vw;
+                    display: inline;
+    
+                    a {
+                        color: colors.$color-white;
+                        text-decoration: none;
+                    }
+    
+                    &:hover {
+                        transition: ease-in-out 0.3s;
+                        transform: scale(1.1);
+                        font-weight: typography.$font-weight-regular;
+                    }
                 }
 
-                &:hover {
-                    transition: ease-in-out 0.3s;
-                    font-weight: typography.$font-weight-bold;
+                @media only screen and (max-width: 768px) {
+                    display: none;
+                }
+            }
+
+            .menu-mobile{
+                position: absolute;
+                top: 60%;
+                left: 10%;
+                list-style: none;
+                font-size: typography.$font-size-h2;
+                font-weight: typography.$font-weight-light;
+                opacity: 0;
+
+                li {
+                    padding: 1vw 0;
+    
+                    a {
+                        color: colors.$color-white;
+                        text-decoration: none;
+                    }
+    
+                    &:hover {
+                        transition: ease-in-out 0.3s;
+                        transform: scale(1.1);
+                        font-weight: typography.$font-weight-regular;
+                    }
+                }
+            }
+
+            .show {
+                opacity: 1;
+                transition: opacity 0.3s ease-in-out;
+                transition-delay: 0.3s;
+            }
+
+            #menu-icon{
+                margin: auto 0;
+                display: none;
+                cursor: pointer;
+    
+                @media only screen and (max-width: 768px) {
+                    display: block;
+                }
+    
+                div{
+                    width: 34px;
+                    height: 3px;
+                    background-color: white;
+                    margin: 6px 0;
+                    transition: 0.4s;
+                }
+            }
+
+            .open{
+
+                .bar1{
+                    -webkit-transform: rotate(-45deg) translatey(13px);
+                    transform: rotate(-45deg) translatey(13px);
+                }
+
+                .bar2{
+                    opacity: 0;
+                }
+    
+                .bar3{
+                    -webkit-transform: rotate(45deg) translatey(-13px);
+                    transform: rotate(45deg) translatey(-13px);
                 }
             }
         }
     }
-
+    
     /* main */
     main{
+        padding-top: 115px;
         min-height: 100vh;
-        margin: 15px;
 
         hr{
             border-top: 1px solid colors.$color-light;
@@ -93,6 +187,7 @@ body {
 
         .content-container{
             width: 100%;
+            padding: 0 15px;
 
             /* landing page */
             .runner{
@@ -155,7 +250,7 @@ body {
                 }
 
                 @media only screen and (min-width: 1200px) {
-                    width: 65%
+                    width: 50%
                 }
             }
 
@@ -164,7 +259,7 @@ body {
                 text-align: center;
 
                 @media only screen and (min-width: 1200px) {
-                    width: 65%
+                    width: 50%
                 }
 
                 i{
@@ -296,36 +391,55 @@ body {
                         }
                     }
                 }
-            }  
-        }
+            } 
+            
+            /* zawodnicy cz 2 */
+            .profile-container{
 
-        /* kontakt */
-        .info-container{
-            padding-top: 20px;
+                max-width: 500px;
+                margin: 15px auto 0;
 
-            a{
-                text-decoration: none;
-            }
+                @include mixins.white-box;
 
-            .name-container{
-                margin-top: 30px;
-            }
+                h1{
+                    margin-bottom: 10px;
+                }
 
-            .contact-container{
-                background-color: colors.$color-white;
-                border-radius: 10px;
-                padding: 5px;
-                margin: 20px 0;
-                
-                @include mixins.shadow;
+                .profile-title{
+                    color: colors.$color-medium;
+                    margin: 0;
+                }
 
-                &:hover{
-                    transition: ease-in-out 0.3s;
-                    background-color: colors.$color-background;
+                .profile-info{
+                    margin-bottom: 10px;
+                }
+
+                img{
+                    border-radius: 10px;
+                    width: 200px;
+                    height: auto;
+                    max-width: 100%;
                 }
             }
         }
 
+        /* kontakt */
+        .contact-container{
+            text-align: center;
+
+            @include mixins.white-box;
+
+            input{
+                width: 100%;
+                margin-bottom: 15px;
+                @include mixins.input;
+            }
+
+            textarea{
+                width: 100%;
+                @include mixins.input; 
+            }
+        }
     }
 
     /* footer */

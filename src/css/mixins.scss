@@ -9,6 +9,7 @@
     padding: 5px;
 
     &::placeholder{
+        text-indent: 10px;
         color: colors.$color-light
     }
 }
@@ -42,34 +43,36 @@
 
 @mixin table{
     margin-top: 15px;
-        width: 100%;
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
 
-        thead{
+    thead{
 
-            th{
-                background-color: colors.$color-navy;
-                color: white;
-                font-weight: typography.$font-weight-regular;
-                padding: 5px; 
-            }
+        th{
+            background-color: colors.$color-navy;
+            color: white;
+            font-weight: typography.$font-weight-regular;
+            padding: 5px; 
         }
+    }
 
-        tbody{
-            color: colors.$color-navy;
+    tbody{
+        color: colors.$color-navy;
 
-            tr{
-                border-bottom: 1px solid colors.$color-light;
+        tr{
+            border-bottom: 1px solid colors.$color-light;
 
-                td{
-                    font-weight: typography.$font-weight-regular;
-                    padding: 5px;
+            td{
+                font-weight: typography.$font-weight-regular;
+                padding: 5px;
 
-                    i{
-                        scale: 1.5;
-                        color: colors.$color-medium;
-                    }
+                i{
+                    scale: 1.5;
+                    color: colors.$color-medium;
                 }
             }
-        }    
+        }
+    }    
     
 }

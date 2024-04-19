@@ -13,18 +13,46 @@
 <body>
 
 <!-- header -->
-    <header class="header_container">
-        <nav class="navbar-container">
-            <div class="logo">
-                <h1><a href="index.html">MG</a></h1>
+  <header>
+    <div id="app">
+        <nav id="navbar" :style="navStyles">                
+            <div class="navbar-content">
+                <a href="index.html">
+                    <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 116.6 59.79" style="enable-background:new 0 0 116.6 59.79;" xml:space="preserve" :class="{ 'big-logo': menuOpen }">
+                        <g>
+                            <g>
+                                <path d="M8.63,52.38V7.58h12.42l17.92,29.25h-6.53L49.84,7.58h12.42l0.13,44.8H48.63L48.5,28.32h2.18l-11.9,20.03h-6.66
+                                    L19.7,28.32h2.69v24.06H8.63z"/>
+                                <path d="M87.35,53.41c-3.63,0-6.97-0.57-10.02-1.7c-3.05-1.13-5.7-2.74-7.94-4.83c-2.24-2.09-3.98-4.56-5.22-7.42
+                                    c-1.24-2.86-1.86-6.02-1.86-9.47s0.62-6.61,1.86-9.47c1.24-2.86,2.99-5.33,5.25-7.42c2.26-2.09,4.94-3.7,8.03-4.83
+                                    c3.09-1.13,6.5-1.7,10.21-1.7c4.44,0,8.39,0.75,11.87,2.24c3.48,1.49,6.35,3.63,8.61,6.4l-9.66,8.51
+                                    c-1.41-1.62-2.93-2.85-4.58-3.68c-1.64-0.83-3.47-1.25-5.47-1.25c-1.66,0-3.17,0.26-4.51,0.77s-2.49,1.26-3.42,2.24
+                                    c-0.94,0.98-1.66,2.15-2.18,3.52c-0.51,1.37-0.77,2.92-0.77,4.67c0,1.66,0.26,3.19,0.77,4.58c0.51,1.39,1.24,2.57,2.18,3.55
+                                    c0.94,0.98,2.06,1.74,3.36,2.27c1.3,0.53,2.76,0.8,4.38,0.8c1.71,0,3.37-0.29,4.99-0.86s3.35-1.57,5.18-2.98l8.45,10.37
+                                    c-2.73,1.83-5.85,3.24-9.34,4.22C94.02,52.92,90.63,53.41,87.35,53.41z M93.75,45.79V28.77h13.12v18.94L93.75,45.79z"/>
+                            </g>
+                        </g>
+                    </svg>
+                </a>
+                <ul class="menu-content">
+                    <li><a href="zawodnicy.html">ZAWODNICY</a></li>
+                    <li><a href="sezon.html">SEZON</a></li>
+                    <li><a href="kontakt.html">KONTAKT</a></li>
+                </ul>
+                <ul class="menu-mobile" :class="{ 'show': menuOpen }">
+                    <li><a href="zawodnicy.html">ZAWODNICY</a></li>
+                    <li><a href="sezon.html">SEZON</a></li>
+                    <li><a href="kontakt.html">KONTAKT</a></li>
+                </ul>
+                <div id="menu-icon" :class="{'open': menuOpen}" @click="toggleMenuIcon">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
+                </div>
             </div>
-            <ul class="menu-container">
-                <li><a href="zawodnicy.html">ZAWODNICY</a></li>
-                <li><a href="sezon.html">SEZON</a></li>
-                <li><a href="kontakt.html">KONTAKT</a></li>
-            </ul>
         </nav>
-    </header>
+    </div>
+  </header>
     
 <!-- main -->
     <main>
@@ -61,6 +89,25 @@
           </table>
           <button>DODAJ ZAWODNIKA</button>
         </div>
+
+        <div class="container profile-container">
+          <div class="row">
+            <h1>Robert Lewandowski</h1>
+            <hr>
+            <div class="col-6">
+              <img src="/src/assets/avatar.png" alt="avatar">
+            </div>
+            <div class="col-6">
+              <p class="profile-title">klub</p>
+              <p class="profile-info">FC Barcelona</p>
+              <p class="profile-title">sport</p>
+              <p class="profile-info">Piłka nozna</p>
+              <p class="profile-title">wiek</p>
+              <p class="profile-info">36</p>
+            </div>
+          </div>
+        </div>
+
       </div>
     </main>
 
