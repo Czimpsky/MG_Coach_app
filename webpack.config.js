@@ -7,7 +7,6 @@ module.exports = {
     entry: {
         "index": "./src/index.js",
         "kontakt": "./src/kontakt.js",
-        "zawodnicy": "./src/zawodnicy.js",
         "sezon": "./src/sezon.js"
     },
     output: {
@@ -39,12 +38,6 @@ module.exports = {
             inject: true,
             chunks: ['sezon'],
             filename: 'sezon.html'
-        }),
-        new HtmlWebpackPlugin({
-            template: "./src/zawodnicy.html",
-            inject: true,
-            chunks: ['zawodnicy'],
-            filename: 'zawodnicy.html'
         }),
         new MiniCssExtractPlugin(),
         new CopyWebpackPlugin({

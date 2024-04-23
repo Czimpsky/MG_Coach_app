@@ -13,100 +13,353 @@
 <body>
 
 <!-- header -->
-    <header>
-        <div id="app">
-            <nav id="navbar" :style="navStyles">                
-                <div class="navbar-content">
-                    <a href="index.html">
-                        <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 116.6 59.79" style="enable-background:new 0 0 116.6 59.79;" xml:space="preserve" :class="{ 'big-logo': menuOpen }">
+  <header>
+    <div id="app">
+        <nav id="navbar" :style="navStyles">                
+            <div class="navbar-content">
+                <a href="index.html">
+                    <svg version="1.1" id="logo" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 116.6 59.79" style="enable-background:new 0 0 116.6 59.79;" xml:space="preserve" :class="{ 'big-logo': menuOpen }">
+                        <g>
                             <g>
-                                <g>
-                                    <path d="M8.63,52.38V7.58h12.42l17.92,29.25h-6.53L49.84,7.58h12.42l0.13,44.8H48.63L48.5,28.32h2.18l-11.9,20.03h-6.66
-                                        L19.7,28.32h2.69v24.06H8.63z"/>
-                                    <path d="M87.35,53.41c-3.63,0-6.97-0.57-10.02-1.7c-3.05-1.13-5.7-2.74-7.94-4.83c-2.24-2.09-3.98-4.56-5.22-7.42
-                                        c-1.24-2.86-1.86-6.02-1.86-9.47s0.62-6.61,1.86-9.47c1.24-2.86,2.99-5.33,5.25-7.42c2.26-2.09,4.94-3.7,8.03-4.83
-                                        c3.09-1.13,6.5-1.7,10.21-1.7c4.44,0,8.39,0.75,11.87,2.24c3.48,1.49,6.35,3.63,8.61,6.4l-9.66,8.51
-                                        c-1.41-1.62-2.93-2.85-4.58-3.68c-1.64-0.83-3.47-1.25-5.47-1.25c-1.66,0-3.17,0.26-4.51,0.77s-2.49,1.26-3.42,2.24
-                                        c-0.94,0.98-1.66,2.15-2.18,3.52c-0.51,1.37-0.77,2.92-0.77,4.67c0,1.66,0.26,3.19,0.77,4.58c0.51,1.39,1.24,2.57,2.18,3.55
-                                        c0.94,0.98,2.06,1.74,3.36,2.27c1.3,0.53,2.76,0.8,4.38,0.8c1.71,0,3.37-0.29,4.99-0.86s3.35-1.57,5.18-2.98l8.45,10.37
-                                        c-2.73,1.83-5.85,3.24-9.34,4.22C94.02,52.92,90.63,53.41,87.35,53.41z M93.75,45.79V28.77h13.12v18.94L93.75,45.79z"/>
-                                </g>
+                                <path d="M8.63,52.38V7.58h12.42l17.92,29.25h-6.53L49.84,7.58h12.42l0.13,44.8H48.63L48.5,28.32h2.18l-11.9,20.03h-6.66
+                                    L19.7,28.32h2.69v24.06H8.63z"/>
+                                <path d="M87.35,53.41c-3.63,0-6.97-0.57-10.02-1.7c-3.05-1.13-5.7-2.74-7.94-4.83c-2.24-2.09-3.98-4.56-5.22-7.42
+                                    c-1.24-2.86-1.86-6.02-1.86-9.47s0.62-6.61,1.86-9.47c1.24-2.86,2.99-5.33,5.25-7.42c2.26-2.09,4.94-3.7,8.03-4.83
+                                    c3.09-1.13,6.5-1.7,10.21-1.7c4.44,0,8.39,0.75,11.87,2.24c3.48,1.49,6.35,3.63,8.61,6.4l-9.66,8.51
+                                    c-1.41-1.62-2.93-2.85-4.58-3.68c-1.64-0.83-3.47-1.25-5.47-1.25c-1.66,0-3.17,0.26-4.51,0.77s-2.49,1.26-3.42,2.24
+                                    c-0.94,0.98-1.66,2.15-2.18,3.52c-0.51,1.37-0.77,2.92-0.77,4.67c0,1.66,0.26,3.19,0.77,4.58c0.51,1.39,1.24,2.57,2.18,3.55
+                                    c0.94,0.98,2.06,1.74,3.36,2.27c1.3,0.53,2.76,0.8,4.38,0.8c1.71,0,3.37-0.29,4.99-0.86s3.35-1.57,5.18-2.98l8.45,10.37
+                                    c-2.73,1.83-5.85,3.24-9.34,4.22C94.02,52.92,90.63,53.41,87.35,53.41z M93.75,45.79V28.77h13.12v18.94L93.75,45.79z"/>
                             </g>
-                        </svg>
-                    </a>
-                    <ul class="menu-content">
-                        <li><a href="zawodnicy.html">ZAWODNICY</a></li>
-                        <li><a href="sezon.html">SEZON</a></li>
-                        <li><a href="kontakt.html">KONTAKT</a></li>
-                    </ul>
-                    <ul class="menu-mobile" :class="{ 'show': menuOpen }">
-                        <li><a href="zawodnicy.html">ZAWODNICY</a></li>
-                        <li><a href="sezon.html">SEZON</a></li>
-                        <li><a href="kontakt.html">KONTAKT</a></li>
-                    </ul>
-                    <div id="menu-icon" :class="{'open': menuOpen}" @click="toggleMenuIcon">
-                        <div class="bar1"></div>
-                        <div class="bar2"></div>
-                        <div class="bar3"></div>
-                    </div>
+                        </g>
+                    </svg>
+                </a>
+                <ul class="menu-content">
+                  <li><a href="sezon.html">Sezon</a></li>
+                  <li><a href="kontakt.html">Kontakt</a></li>
+                </ul>
+                <ul class="menu-mobile" :class="{ 'show': menuOpen }">
+                    <li><a href="sezon.html">Sezon</a></li>
+                    <li><a href="kontakt.html">Kontakt</a></li>
+                </ul>
+                <div id="menu-icon" :class="{'open': menuOpen}" @click="toggleMenuIcon">
+                    <div class="bar1"></div>
+                    <div class="bar2"></div>
+                    <div class="bar3"></div>
                 </div>
-            </nav>
-        </div>
-    </header>
+            </div>
+        </nav>
+    </div>
+  </header>
     
 <!-- main -->
     <main>
-        <div class="content-container">
-            <h1>Sezon</h1>
-            <div class="white-box">
-                <table class="table season">
-                    <thead>
-                      <tr>
-                        <th></th>
-                        <th>START</th>
-                        <th>END</th>
-                        <th>TURNIEJ</th>
-                        <th>LOKALIZACJA</th>
-                        <th></th>
-                      </tr>
-                    </thead>
-                    <tbody>
-                      <tr>
-                        <td>1</td>
-                        <td>22.04.2024</td>
-                        <td>23.04.2024</td>
-                        <td>Mistrzostwa Polski</td>
-                        <td>Wrocław</td>
-                        <td>
-                            <i class="fa-regular fa-pen-to-square"></i>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>2</td>
-                        <td>05.10.2024</td>
-                        <td>07.10.2024</td>
-                        <td>EUCF</td>
-                        <td>Berlin</td>
-                        <td>
-                            <i class="fa-regular fa-pen-to-square"></i>
-                            <i class="fa-regular fa-trash-can"></i>
-                        </td>
-                      </tr>
-                    </tbody>
-                </table>
-                <button>DODAJ START</button>
+      <div class="content-container" id="app-players">
+
+        <div class="white-box">
+<!-- przełączanie kategorii -->
+          <div class="toggle-category">
+            <div class="container">
+              <div class="row">
+                <div class="col-6 category" @click="toggleToPlayers" :class="{ 'active-category': playersDisplayed }">
+                  <h3>Zawodnicy</h3>
+                </div>
+                <div class="col-6  category" @click="toggleToSeason" :class="{' active-category': playersDisplayed === false }">
+                  <h3>Wydarzenia</h3>
+                </div>
+              </div>
             </div>
+          </div>
+
+  <!-- zawodnicy -->
+          <div v-if="playersDisplayed">
+            
+            <!-- szukaj zawodnika -->
+            <div v-if="newPlayerForm === false" class="container player-nav">
+              <div class="row">
+                <div  class="col-11">
+                  <input class="input-search" type="text" placeholder="Szukaj zawodnika">
+                </div>
+                <div class="col-1 icon">
+                  <i class="fa-solid fa-user-plus" @click="addNewPlayer"></i></i>
+                </div>
+              </div>
+            </div>
+
+            <!-- dodaj zawodnika -->
+            <div v-if="newPlayerForm" class="container player-nav">
+              <form action="">
+                <div class="row">
+                  <div class="form-group col-8">
+                    <label for="name">Imię:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newPlayer.name" placeholder="Imię" type="text" id="name" name="name" required>
+                      <i v-show="newPlayer.name !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newPlayer.name === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  <div class="col-2"></div>
+                  <div class="col-1 icon">
+                    <i class="fa-solid fa-check" @click="inputsValidationPlayers"></i> 
+                  </div>
+                  <div class="col-1 icon">
+                    <i class="fa-solid fa-xmark" @click="addNewPlayer"></i>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="surname">Nazwisko:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newPlayer.surname" placeholder="Nazwisko" type="text" id="surname" name="surname" required>
+                      <i v-show="newPlayer.surname !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newPlayer.surname === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="club">Klub:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newPlayer.club" placeholder="Klub" type="text" id="club" name="club" required>
+                      <i v-show="newPlayer.club !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newPlayer.club === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="sport">Sport</label>
+                    <div class="input-wrapper">
+                      <input v-model="newPlayer.sport" placeholder="Sport" type="text" id="sport" name="sport" required>
+                      <i v-show="newPlayer.sport !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newPlayer.sport === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="city">Miasto:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newPlayer.city" placeholder="Miasto" type="text" id="city" name="city" required>
+                      <i v-show="newPlayer.city !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newPlayer.city === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="country">Kraj:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newPlayer.country" placeholder="Kraj" type="text" id="country" name="country" required>
+                      <i v-show="newPlayer.country !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newPlayer.country === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="birth">Data Urodzenia:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newPlayer.birth" type="date" id="birth" name="birth" required>
+                      <i v-show="newPlayer.birth !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newPlayer.birth === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- lista zawodników -->
+            <table class="table players">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Zawodnik</th>
+                    <th>Klub</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody  v-for="(player, index) in players" :key="index">
+                  <tr :class="{ 'player-profile-active': expandedRows[index] }">
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ player.name }} {{ player.surname }}</td>
+                    <td>{{ player.club }}</td>
+                    <td>
+                      <i class="fa-solid fa-caret-down" @click="toggleProfile(index)" :class="{ 'rotate-icon': expandedRows[index] }"></i>
+                    </td>
+                  </tr>
+                  
+                  <!-- profil zawodnika -->
+                  <tr v-if="expandedRows[index]" class="player-profile">
+                    <td colspan="5">
+                      <div class="container">
+                        <div class="row info-container">
+                          <div class="col-sm-8 col-md-10">
+                            <table>
+                              <tbody class="info-table">
+                                <div>
+                                  <h1 class="h1-bold">{{ player.name }} {{ player.surname }}</h1>
+                                </div>
+                                <tr>
+                                  <td><i class="fa-solid fa-shield"></i></td>
+                                  <td>{{ player.club }}</td>
+                                </tr>
+                                <tr>
+                                  <td><i class="fa-solid fa-location-dot"></i></td>
+                                  <td>{{ player.city }}, {{ player.country }}</td>
+                                </tr>
+                                <tr>
+                                  <td><i class="fa-solid fa-football"></i></td>
+                                  <td>{{ player.sport }}</td>
+                                </tr>
+                                <tr>
+                                  <td><i class="fa-regular fa-clock"></i></td>
+                                  <td>{{ countAge(player.birth) }}</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                          <div class="col-sm-4 col-md-2 avatar-container">
+                            <img class="avatar" src="/src/assets/avatar.png" alt="avatar">
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+
+  <!-- wydarzenia -->
+
+          <!-- szukaj event -->
+          <div v-if="playersDisplayed === false">
+            <div v-if="newEventForm === false">
+              <div class="container player-nav">
+                <div class="row">
+                  <div  class="col-10">
+                    <input class="input-search" type="text" placeholder="Szukaj wydarzenia">
+                  </div>
+                  <div class="col-2 icon">
+                    <i class="fa-solid fa-calendar-plus" @click="addNewEvent"></i>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- dodaj event -->
+            <div v-if="newEventForm" class="container player-nav">
+              <form action="">
+                <div class="row">
+                  <div class="form-group col-8">
+                    <label for="event-name">Wydarzenie:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newEvent.eventName" placeholder="Wydarzenie" type="text" id="event-name" name="event-name" required>
+                      <i v-show="newEvent.eventName !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newEvent.eventName === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  
+                  <div class="col-2"></div>
+                  <div class="col-1 icon">
+                    <i class="fa-solid fa-check" @click="inputsValidationEvents"></i>
+                  </div>
+                  <div class="col-1 icon">
+                    <i class="fa-solid fa-xmark" @click="addNewEvent"></i>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="event-city">Miasto:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newEvent.eventCity" placeholder="Miasto" type="text" id="event-city" name="event-city" required>
+                      <i v-show="newEvent.eventCity !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newEvent.eventCity === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="event-country">Kraj:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newEvent.eventCountry" placeholder="Kraj" type="text" id="event-country" name="event-country" required>
+                      <i v-show="newEvent.eventCountry !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newEvent.eventCountry === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="start">Start wydarzenia:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newEvent.start" type="date" id="start" name="start" required>
+                      <i v-show="newEvent.start !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newEvent.start === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                  <div class="form-group col-8">
+                    <label for="end">Koniec wydarzenia:</label>
+                    <div class="input-wrapper">
+                      <input v-model="newEvent.end" type="date" id="end" name="end" required>
+                      <i v-show="newEvent.end !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                      <i v-show="inputEmpty && newEvent.end === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+
+            <!-- lista eventów -->
+            <table class="table events">
+                <thead>
+                  <tr>
+                    <th></th>
+                    <th>Turniej</th>
+                    <th>Data</th>
+                    <th></th>
+                  </tr>
+                </thead>
+                <tbody v-for="(event, index) in events" :key="index">
+                  <tr :class="{ 'event-profile-active': expandedEvents[index] }">
+                    <td>{{ index + 1 }}</td>
+                    <td>{{ event.eventName }}</td>
+                    <td>{{ dateFormat(event.start) }}</td>
+                    <td>
+                      <i class="fa-solid fa-caret-down" @click="toggleEvent(index)" :class="{ 'rotate-icon': expandedEvents[index] }"></i>
+                    </td>
+                  </tr>
+
+                  <!-- szczegóły eventu -->
+                  <tr v-if="expandedEvents[index]" class="event-info">
+                    <td colspan="5">
+                      <div class="container">
+                        <div class="row info-container">
+                          <div class="col-sm-8 col-md-10">
+                            <table>
+                              <div>
+                                <h1>{{ event.eventName }}</h1>
+                              </div>
+                              <tbody class="info-table">
+                                <tr>
+                                  <td><i class="fa-solid fa-location-dot"></i></td>
+                                  <td>{{ event.eventCity }}, {{ event.eventCountry }}</td>
+                                </tr>
+                                <tr>
+                                  <td><i class="fa-regular fa-calendar"></i></td>
+                                  <td>{{ dateFormat(event.start) }} - {{ dateFormat(event.end) }}</td>
+                                </tr>
+                                <tr>
+                                  <td><i class="fa-solid fa-hourglass-start"></i></td>
+                                  <td>{{ daysLeftToStart(event.start) }}</td>
+                                </tr>
+                                <tr>
+                                  <td><i class="fa-solid fa-user"></i></td>
+                                  <td>14 zawodników</td>
+                                </tr>
+                              </tbody>
+                            </table>
+                          </div>
+                        </div>
+                      </div>
+                    </td>
+                  </tr>
+                </tbody>
+            </table>
+          </div>
+
         </div>
+      </div>
     </main>
 
 <!-- footer -->
-    <footer>
-        <div class="info-footer"></div>
-        <div class="rights-footer">
-            <p>2024 MG Coach. All rights reserved</p>
-        </div>
-    </footer>
+  <footer>
+      <div class="info-footer"></div>
+      <div class="rights-footer">
+          <p>2024 MG Coach. All rights reserved</p>
+      </div>
+  </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>

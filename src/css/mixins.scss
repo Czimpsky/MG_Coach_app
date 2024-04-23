@@ -39,6 +39,7 @@
     padding: 15px;
     background-color: white;
     border-radius: 10px;
+    margin-bottom: 15px;
 }
 
 @mixin table{
@@ -50,10 +51,26 @@
     thead{
 
         th{
-            background-color: colors.$color-navy;
+            background-color: colors.$color-footer;
             color: white;
             font-weight: typography.$font-weight-regular;
             padding: 5px; 
+
+            &:nth-child(1){  
+                width: 20px;
+            }
+
+            &:nth-child(3){                                    
+                @media only screen and (max-width: 575px) {
+                    display: none;
+                    max-width: 200px;
+                }
+            }
+
+            &:nth-child(4){
+                text-align: center;
+                width: 50px;
+            } 
         }
     }
 
@@ -68,11 +85,65 @@
                 padding: 5px;
 
                 i{
-                    scale: 1.5;
+                    scale: 1.4;
                     color: colors.$color-medium;
                 }
+
+                .rotate-icon{
+                    transform: rotate(180deg);
+                    transition: transform 0.3s ease;
+                }
+
+                &:nth-child(2){
+                    font-weight: 400;
+                }
+
+                &:nth-child(3){                                    
+                    @media only screen and (max-width: 575px) {
+                        display: none
+                    }
+                }
+
+                &:nth-child(4){
+                    text-align: center;
+                    width: 50px;
+                }
             }
+        }    
+    }
+}
+
+@mixin category-nav {
+    .player-nav{
+
+        .form-group{
+            margin-bottom: 15px;
         }
-    }    
-    
+
+        input{
+            width: 100%;
+            @include input;
+        }
+
+        input[type="date"]{
+            text-indent: 10px;
+            color: colors.$color-light;
+        }
+
+        .icon{
+            color: colors.$color-medium;
+            font-size: 25px;
+            text-align: right;
+        }
+
+        .input-wrapper {
+            position: relative
+        }
+
+        .val-icon {
+            position: absolute;
+            right: -20px;
+            top: 9px;
+        }
+    }
 }

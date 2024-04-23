@@ -16,9 +16,8 @@ body {
     background-color: colors.$color-background;
 
     h1{
-        margin: 30px 0;
         font-size: typography.$font-size-h1;
-        font-weight: typography.$font-weight-bold;
+        font-weight: typography.$font-weight-h1;
     }
 
     h2{
@@ -40,6 +39,10 @@ body {
         color: colors.$color-navy;
     }
 
+    i:hover{
+        cursor: pointer;
+    }
+
     button{
         @include mixins.button;
     }
@@ -49,9 +52,9 @@ body {
         margin: 0 auto;
     }
     
-    /* navbar */
+/* navbar */
     #navbar{
-        position: absolute;
+        position: fixed;
         background-color: colors.$color-navy;
         color: colors.$color-white;
         height: 100px;
@@ -108,6 +111,7 @@ body {
                 }
             }
 
+/* navbar mobile */
             .menu-mobile{
                 position: absolute;
                 top: 60%;
@@ -118,7 +122,7 @@ body {
                 opacity: 0;
 
                 li {
-                    padding: 1vw 0;
+                    display: none;
     
                     a {
                         color: colors.$color-white;
@@ -135,8 +139,12 @@ body {
 
             .show {
                 opacity: 1;
-                transition: opacity 0.3s ease-in-out;
+                transition: 0.3s ease-in-out;
                 transition-delay: 0.3s;
+
+                li{
+                    display: block;
+                }
             }
 
             #menu-icon{
@@ -176,7 +184,7 @@ body {
         }
     }
     
-    /* main */
+/* main */
     main{
         padding-top: 115px;
         min-height: 100vh;
@@ -189,7 +197,7 @@ body {
             width: 100%;
             padding: 0 15px;
 
-            /* landing page */
+/* landing page */
             .runner{
                 display: flex;
                 justify-content: center;
@@ -268,162 +276,140 @@ body {
                 }
             }
 
-
             .white-box{
                 @include mixins.white-box;
 
-                /* zawodnicy */
-                #input-search{
-                    width: 30%;
-                    @include mixins.input;
-    
-                    @media only screen and (max-width: 960px) {
-                        width: 50%;
-                    }
-    
-                    @media only screen and (max-width: 720px) {
-                        width: 100%;
-                    }
-                }
+/* zawodnicy */
+                @include mixins.category-nav;
     
                 .table{
                     @include mixins.table;
                 }
 
+                .toggle-category{
+                    margin-bottom: 25px;
+
+                    .category{
+                        border-bottom: solid 1px colors.$color-light;
+                    }
+        
+                    .active-category{
+                        border-bottom: solid 2px colors.$color-medium;
+                    }
+        
+                    &:hover{
+                        cursor: pointer;
+                    }
+                }
+
                 .players{
 
-                    thead{
+                    tbody{
 
-                        th{
+                        .player-profile{
 
-                            &:nth-child(5){
-                                text-align: center;
-                            }
+                            .avatar-container{
+                                display: flex;
+                                justify-content: center;
+
+                                .avatar{
+                                    border-radius: 10px;
+                                    max-width: 100px;
+                                    height: 100px;
     
-                            &:nth-child(4){        
-                                @media only screen and (max-width: 960px) {
-                                    display: none;
+                                    @media only screen and (max-width: 768px) {
+                                        margin-bottom: 15px;
+                                    }
+                                }
+    
+                            }
+
+                            .info-container{
+                                background-color: colors.$color-background;
+                                border-radius: 10px;
+                                padding: 10px;
+                                margin-bottom: 15px;
+
+                                .info-table{
+
+                                    tr{
+                                        border-color: transparent;
+    
+                                        td{
+                                            &:nth-child(1){
+                                                font-weight: typography.$font-weight-regular;
+                                                text-align: right;
+                                            }
+        
+                                            &:nth-child(2){
+                                                font-weight: 400;
+                                            }
+                                        }
+    
+                                        i{
+                                            color: colors.$color-navy;
+                                            font-size: 12px;
+                                        }
+                                    }
                                 }
                             }
-    
-                            &:nth-child(3){                                    
-                                @media only screen and (max-width: 720px) {
-                                    display: none
-                                }
+
+                            p{
+                                margin: 5px 0;
                             }
-                            
+                        }
+
+                        .player-profile-active{
+                            border-color: transparent;
                         }
                     }
+                }
+
+/* events */
+                .events{
 
                     tbody{
 
-                        td{
+                        .event-info{
 
-                            &:nth-child(5){
-                                text-align: center;
-                            }
+                            .info-container{
+                                background-color: colors.$color-background;
+                                border-radius: 10px;
+                                padding: 10px;
+                                margin-bottom: 15px;
+
+                                .info-table{
+
+                                    tr{
+                                        border-color: transparent;
+                                        font-weight: typography.$font-weight-light;
     
-                            &:nth-child(4){        
-                                @media only screen and (max-width: 960px) {
-                                    display: none;
+                                        i{
+                                            color: colors.$color-navy;
+                                            font-size: 12px;
+                                        }
+                                    }
+
+                                    &:nth-child(1){
+                                        width: 20px;
+                                    }
                                 }
                             }
-    
-                            &:nth-child(3){                                    
-                                @media only screen and (max-width: 720px) {
-                                    display: none
-                                }
-                            }
-                            
-                        }
-                    }
-                }
 
-                /* season */
-                .season{
-
-                    thead{
-
-                        th{
-
-                            &:nth-child(6){
-                                text-align: center;
-                            }
-    
-                            &:nth-child(3){
-    
-                                @media only screen and (max-width: 960px) {
-                                    display: none;
-                                }
-                            }
-    
-                            &:nth-child(5){
-                                @media only screen and (max-width: 720px) {
-                                    display: none
-                                }
+                            p{
+                                margin: 5px 0;
                             }
                         }
-                    }
 
-                    tbody{
-
-                        td{
-                            i{
-                                margin: 0 10px;
-                            }
-
-                            &:nth-child(6){
-                                text-align: right;
-                            }
-    
-                            &:nth-child(3){
-    
-                                @media only screen and (max-width: 960px) {
-                                    display: none;
-                                }
-                            }
-    
-                            &:nth-child(5){
-                                @media only screen and (max-width: 720px) {
-                                    display: none
-                                }
-                            }
+                        .event-profile-active{
+                            border-color: transparent;
                         }
                     }
-                }
-            } 
-            
-            /* zawodnicy cz 2 */
-            .profile-container{
-
-                max-width: 500px;
-                margin: 15px auto 0;
-
-                @include mixins.white-box;
-
-                h1{
-                    margin-bottom: 10px;
-                }
-
-                .profile-title{
-                    color: colors.$color-medium;
-                    margin: 0;
-                }
-
-                .profile-info{
-                    margin-bottom: 10px;
-                }
-
-                img{
-                    border-radius: 10px;
-                    width: 200px;
-                    height: auto;
-                    max-width: 100%;
                 }
             }
         }
 
-        /* kontakt */
+/* kontakt */
         .contact-container{
             text-align: center;
 
@@ -442,7 +428,7 @@ body {
         }
     }
 
-    /* footer */
+/* footer */
     footer{
         width: 100%;
 
