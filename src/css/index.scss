@@ -276,15 +276,10 @@ body {
                 }
             }
 
+/* sezon */
             .white-box{
                 @include mixins.white-box;
-
-/* zawodnicy */
                 @include mixins.category-nav;
-    
-                .table{
-                    @include mixins.table;
-                }
 
                 .toggle-category{
                     margin-bottom: 25px;
@@ -302,108 +297,23 @@ body {
                     }
                 }
 
+/* zawodnicy */
                 .players{
+                    @include mixins.more-details;
+                    @include mixins.table-list;
 
-                    tbody{
-
-                        .player-profile{
-
-                            .avatar-container{
-                                display: flex;
-                                justify-content: center;
-
-                                .avatar{
-                                    border-radius: 10px;
-                                    max-width: 100px;
-                                    height: 100px;
-    
-                                    @media only screen and (max-width: 768px) {
-                                        margin-bottom: 15px;
-                                    }
-                                }
-    
-                            }
-
-                            .info-container{
-                                background-color: colors.$color-background;
-                                border-radius: 10px;
-                                padding: 10px;
-                                margin-bottom: 15px;
-
-                                .info-table{
-
-                                    tr{
-                                        border-color: transparent;
-    
-                                        td{
-                                            &:nth-child(1){
-                                                font-weight: typography.$font-weight-regular;
-                                                text-align: right;
-                                            }
-        
-                                            &:nth-child(2){
-                                                font-weight: 400;
-                                            }
-                                        }
-    
-                                        i{
-                                            color: colors.$color-navy;
-                                            font-size: 12px;
-                                        }
-                                    }
-                                }
-                            }
-
-                            p{
-                                margin: 5px 0;
-                            }
-                        }
-
-                        .player-profile-active{
-                            border-color: transparent;
-                        }
+                    .player-profile-active{
+                        border-color: transparent;
                     }
                 }
 
-/* events */
+/* eventy */
                 .events{
+                    @include mixins.more-details;
+                    @include mixins.table-list;
 
-                    tbody{
-
-                        .event-info{
-
-                            .info-container{
-                                background-color: colors.$color-background;
-                                border-radius: 10px;
-                                padding: 10px;
-                                margin-bottom: 15px;
-
-                                .info-table{
-
-                                    tr{
-                                        border-color: transparent;
-                                        font-weight: typography.$font-weight-light;
-    
-                                        i{
-                                            color: colors.$color-navy;
-                                            font-size: 12px;
-                                        }
-                                    }
-
-                                    &:nth-child(1){
-                                        width: 20px;
-                                    }
-                                }
-                            }
-
-                            p{
-                                margin: 5px 0;
-                            }
-                        }
-
-                        .event-profile-active{
-                            border-color: transparent;
-                        }
+                    .event-profile-active{
+                        border-color: transparent;
                     }
                 }
             }

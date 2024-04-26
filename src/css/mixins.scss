@@ -36,13 +36,15 @@
 }
 
 @mixin white-box{
+    max-width: 1200px;
     padding: 15px;
     background-color: white;
     border-radius: 10px;
-    margin-bottom: 15px;
+    margin: 0 auto 15px;
 }
 
-@mixin table{
+/* lista zawodników i eventów */
+@mixin table-list{
     margin-top: 15px;
     width: 100%;
     border-collapse: collapse;
@@ -85,7 +87,6 @@
                 padding: 5px;
 
                 i{
-                    scale: 1.4;
                     color: colors.$color-medium;
                 }
 
@@ -113,8 +114,9 @@
     }
 }
 
+/* szukanie i dodawanie eventów i zawodników */
 @mixin category-nav {
-    .player-nav{
+    .category-nav{
 
         .form-group{
             margin-bottom: 15px;
@@ -123,6 +125,10 @@
         input{
             width: 100%;
             @include input;
+        }
+
+        .edit-event{
+            background-color: white;
         }
 
         input[type="date"]{
@@ -144,6 +150,81 @@
             position: absolute;
             right: -20px;
             top: 9px;
+        }
+    }
+}
+
+/* szczegóły eventów i profile zawodników */
+@mixin more-details {
+
+    .more-details{
+
+        .info-container{
+            position: relative;
+            background-color: colors.$color-background;
+            border-radius: 10px;
+            padding: 10px;
+            margin: 0 auto 15px;
+
+            .info-card{
+                margin: 0;
+                
+                .row{
+                    display: flex;
+                    align-items: center;
+
+                    h1{
+                        margin-bottom: 10px;
+                    }
+
+                    i{
+                        margin-bottom: 13px;
+                        margin-left: 5px;
+                        font-size: 12px;
+                        color: colors.$color-navy;
+                    }
+
+                    p{
+                        margin-bottom: 10px;
+                        padding: 0;
+                    }
+
+                    @include table-icon;
+                }
+            }
+
+            .yes-no{
+                h1{
+                    text-align: center;
+                }
+            }
+        }
+    }
+}
+
+@mixin table-icon{
+    ul{
+        padding: 0;
+        margin: 0;
+        display: flex;
+        justify-content: row;
+        position: absolute;
+        right: 20px;
+        bottom: 10px;
+
+        li{
+            list-style: none;
+            display: inline;
+
+            i{
+                color: colors.$color-medium;
+                font-size: 18px;
+                margin-left: 25px;
+
+                @media only screen and (min-width: 768px) {
+                    margin-left: 45px;
+                }
+            }
         }
     }
 }
