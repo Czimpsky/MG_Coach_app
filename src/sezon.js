@@ -38,8 +38,10 @@ Vue.createApp({
         return{
             playersDisplayed: true,
             players: [
-                { name: 'Maciek', surname: 'Grabowski', club: 'KS Mojra Warszawa', sport: 'Ultimate', city: 'Warszawa', country: 'Polska', birth: '1990-02-22' },
-                { name: 'Robert', surname: 'Lewandowski', club: 'FC Barcelona', sport: 'Piłka Nozna', city: 'Barcelona', country: 'Hiszpania', birth: '1988-08-21' }
+                { name: 'Maciek', surname: 'Grabowski', club: 'KS Mojra Warszawa', sport: 'Ultimate', city: 'Warszawa', country: 'Polska', birth: '1990-02-22'},
+                { name: 'Robert', surname: 'Lewandowski', club: 'FC Barcelona', sport: 'Piłka Nozna', city: 'Barcelona', country: 'Hiszpania', birth: '1988-08-21'},
+                { name: 'Stephen', surname: 'Curry', club: 'Golden State Warriors', sport: 'Koszykówka', city: 'San Francisco', country: 'USA', birth: '1988-03-14'},
+                { name: 'LeBron', surname: 'James', club: 'LA Lakers', sport: 'Koszykówka', city: 'Los Angeles', country: 'USA', birth: '1984-12-30'}
             ],
             newPlayer: { 
                 name: '', 
@@ -60,18 +62,18 @@ Vue.createApp({
                 birth: ''
             },
             events: [
-                {eventName: 'MP Mixed Runda Wiosenna', eventCity: '???', eventCountry: 'Polska', start: '2024-05-11', end: '2024-05-12'},
-                {eventName: 'MP Open', eventCity: '???', eventCountry: 'Polska', start: '2024-05-25', end: '2024-05-26'},
-                {eventName: 'Windmill Windup', eventCity: 'Amsterdam', eventCountry: 'Holandia', start: '2024-06-14', end: '2024-06-16'},
-                {eventName: 'PMP', eventCity: '???', eventCountry: 'Polska', start: '2024-06-29', end: '2024-06-30'},
-                {eventName: 'Mistrzostwa Warszawy', eventCity: '???', eventCountry: 'Polska', start: '2024-07-06', end: '2024-07-07'},
-                {eventName: 'Top Cat', eventCity: '???', eventCountry: 'Polska', start: '2024-07-13', end: '2024-07-14'},
-                {eventName: 'WJUC', eventCity: 'Birmingham', eventCountry: 'Wielka Brytania', start: '2024-07-20', end: '2024-07-27'},
-                {eventName: 'Sandslash', eventCity: 'Dębki', eventCountry: 'Polska', start: '2024-08-23', end: '2024-08-25'},
-                {eventName: 'MMP Mixed', eventCity: '???', eventCountry: 'Polska', start: '2024-09-07', end: '2024-09-08'},
-                {eventName: 'MP Mixed', eventCity: '???', eventCountry: 'Polska', start: '2024-09-20', end: '2024-09-22'},
-                {eventName: 'EUCF', eventCity: '???', eventCountry: '???', start: '2024-09-27', end: '2024-09-29'},
-                {eventName: 'WBUCC', eventCity: 'Portimao', eventCountry: 'Portugalia', start: '2024-10-14', end: '2024-10-19'},
+                {eventName: 'MP Mixed Runda Wiosenna', eventCity: '???', eventCountry: 'Polska', start: '2024-05-11', end: '2024-05-12', selectedPlayers: []},
+                {eventName: 'MP Open', eventCity: '???', eventCountry: 'Polska', start: '2024-05-25', end: '2024-05-26', selectedPlayers: []},
+                {eventName: 'Windmill Windup', eventCity: 'Amsterdam', eventCountry: 'Holandia', start: '2024-06-14', end: '2024-06-16', selectedPlayers: []},
+                {eventName: 'PMP', eventCity: '???', eventCountry: 'Polska', start: '2024-06-29', end: '2024-06-30', selectedPlayers: []},
+                {eventName: 'Mistrzostwa Warszawy', eventCity: '???', eventCountry: 'Polska', start: '2024-07-06', end: '2024-07-07', selectedPlayers: []},
+                {eventName: 'Top Cat', eventCity: '???', eventCountry: 'Polska', start: '2024-07-13', end: '2024-07-14', selectedPlayers: []},
+                {eventName: 'WJUC', eventCity: 'Birmingham', eventCountry: 'Wielka Brytania', start: '2024-07-20', end: '2024-07-27', selectedPlayers: []},
+                {eventName: 'Sandslash', eventCity: 'Dębki', eventCountry: 'Polska', start: '2024-08-23', end: '2024-08-25', selectedPlayers: []},
+                {eventName: 'MMP Mixed', eventCity: '???', eventCountry: 'Polska', start: '2024-09-07', end: '2024-09-08', selectedPlayers: []},
+                {eventName: 'MP Mixed', eventCity: '???', eventCountry: 'Polska', start: '2024-09-20', end: '2024-09-22', selectedPlayers: []},
+                {eventName: 'EUCF', eventCity: '???', eventCountry: '???', start: '2024-09-27', end: '2024-09-29', selectedPlayers: []},
+                {eventName: 'WBUCC', eventCity: 'Portimao', eventCountry: 'Portugalia', start: '2024-10-14', end: '2024-10-19', selectedPlayers: []},
             ],
             newEvent:{
                 eventName: '',
@@ -98,16 +100,11 @@ Vue.createApp({
             eventDetailsMode: 1,
             selectedEventIndex: null,
             selectedPlayerIndex: null,
+            choosePlayers: false
         }
     },
 
     computed: {
-        // eventsSortedByDate(){
-        //     this.events.slice().sort((a,b) => {
-        //         return new Date(a.start) - new Date(b.start);
-        //     })
-        // }, 
-
         searchEvents(){
             const searchData = this.searchEventInput.toLowerCase().trim();
 
@@ -136,6 +133,36 @@ Vue.createApp({
     },
 
     methods: {
+// dodawanie zawodników do eventów
+        playersAttending(player, event){
+            if (event.selectedPlayers.includes(player)) {
+                return `${player.name} ${player.surname}`;
+            } else {
+                return null;
+            }
+        },
+
+        choosePlayersToAddToEvent(){
+            this.choosePlayers = !this.choosePlayers;
+        },
+
+        togglePlayerInEvent(player, eventIndex) {
+            const event = this.events[eventIndex];
+            const playerIndex = event.
+            
+            selectedPlayers.indexOf(player);
+
+            if (playerIndex === -1) {
+                event.selectedPlayers.push(player);
+            } else {
+                event.selectedPlayers.splice(playerIndex, 1);
+            }
+        },
+
+        isPlayerSelected(player, eventIndex) {
+            const event = this.events[eventIndex];
+            return event.selectedPlayers.includes(player);
+        },
 
 // przełączanie zawodnicy / eventy
         toggleToPlayers(){
@@ -178,6 +205,8 @@ Vue.createApp({
 // zawodnicy
         addNewPlayer(){
             this.newPlayerForm = !this.newPlayerForm;
+
+            this.clearPlayerInputs();
         },
 
 
@@ -192,6 +221,10 @@ Vue.createApp({
                 birth: this.newPlayer.birth
             })
 
+            this.clearPlayerInputs();
+        },
+
+        clearPlayerInputs(){
             this.newPlayer.name = '';
             this.newPlayer.surname = '';
             this.newPlayer.club = '';
@@ -291,6 +324,8 @@ Vue.createApp({
 // wydarzenia
         addNewEvent(){
             this.newEventForm = !this.newEventForm;
+
+            this.clearEventInputs();
         },
 
         addNewEventToList(){
@@ -299,9 +334,15 @@ Vue.createApp({
                 eventCity: this.newEvent.eventCity,
                 eventCountry: this.newEvent.eventCountry,
                 start: this.newEvent.start,
-                end: this.newEvent.end
+                end: this.newEvent.end,
+                selectedPlayers: []
+
             });
 
+            this.clearEventInputs();
+        },
+
+        clearEventInputs(){
             this.newEvent.eventName = '';
             this.newEvent.eventCity = '';
             this.newEvent.eventCountry = '';
@@ -393,7 +434,18 @@ Vue.createApp({
         dateFormat(date){
             const dateChanged = new Date(date);
 
-            return dateChanged.getDate() + '/' + (dateChanged.getMonth() +1) + '/' + dateChanged.getFullYear();
+            return dateChanged.getDate() + ' . ' + (dateChanged.getMonth() +1) + ' . ' + dateChanged.getFullYear();
+        },
+
+        dateFormatEvent(dateStart, dateEnd){
+            const start = new Date(dateStart);
+            const end = new Date(dateEnd);
+
+            if (start.getMonth() === end.getMonth()){
+                return start.getDate() + ' - ' + end.getDate()  + ' . ' +  start.getMonth() + ' . ' + start.getFullYear();
+            } else {
+                return start.getDate()  + ' . ' +  start.getMonth() + ' - ' + end.getDate()  + ' . ' +  start.getMonth() + ' . ' + start.getFullYear();
+            }
         },
 
         daysLeftToStart(date){

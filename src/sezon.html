@@ -55,7 +55,6 @@
 <!-- main -->
     <main>
       <div class="content-container" id="app-season">
-
         <div class="white-box">
 <!-- przełączanie kategorii -->
           <div class="toggle-category">
@@ -90,7 +89,16 @@
             <div v-if="newPlayerForm" class="container category-nav">
               <form action="">
                 <div class="row">
-                  <div class="form-group col-8">
+                  <div class="col-8 col-lg-10"></div>
+                  <div class="col-2 col-lg-1 icon">
+                    <i class="fa-solid fa-check" @click="addNewPlayerToListValidated"></i> 
+                  </div>
+                  <div class="col-2 col-lg-1 icon">
+                    <i class="fa-solid fa-xmark" @click="addNewPlayer"></i>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-8">
                     <label for="name">Imię:</label>
                     <div class="input-wrapper">
                       <input v-model="newPlayer.name" placeholder="Imię" type="text" id="name" name="name" required>
@@ -98,16 +106,7 @@
                       <i v-show="inputEmpty && newPlayer.name === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-
-                  <div class="col-2"></div>
-                  <div class="col-1 icon">
-                    <i class="fa-solid fa-check" @click="addNewPlayerToListValidated"></i> 
-                  </div>
-                  <div class="col-1 icon">
-                    <i class="fa-solid fa-xmark" @click="addNewPlayer"></i>
-                  </div>
-                  
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="surname">Nazwisko:</label>
                     <div class="input-wrapper">
                       <input v-model="newPlayer.surname" placeholder="Nazwisko" type="text" id="surname" name="surname" required>
@@ -115,7 +114,7 @@
                       <i v-show="inputEmpty && newPlayer.surname === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="club">Klub:</label>
                     <div class="input-wrapper">
                       <input v-model="newPlayer.club" placeholder="Klub" type="text" id="club" name="club" required>
@@ -123,7 +122,7 @@
                       <i v-show="inputEmpty && newPlayer.club === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="sport">Sport</label>
                     <div class="input-wrapper">
                       <input v-model="newPlayer.sport" placeholder="Sport" type="text" id="sport" name="sport" required>
@@ -131,7 +130,7 @@
                       <i v-show="inputEmpty && newPlayer.sport === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="city">Miasto:</label>
                     <div class="input-wrapper">
                       <input v-model="newPlayer.city" placeholder="Miasto" type="text" id="city" name="city" required>
@@ -139,7 +138,7 @@
                       <i v-show="inputEmpty && newPlayer.city === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="country">Kraj:</label>
                     <div class="input-wrapper">
                       <input v-model="newPlayer.country" placeholder="Kraj" type="text" id="country" name="country" required>
@@ -147,7 +146,7 @@
                       <i v-show="inputEmpty && newPlayer.country === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="birth">Data Urodzenia:</label>
                     <div class="input-wrapper">
                       <input v-model="newPlayer.birth" type="date" id="birth" name="birth" required>
@@ -208,6 +207,7 @@
                           </div>
                         </div>
 
+                        <!-- panel usunięcia zawodnika -->
                         <div v-else-if="playerProfileMode === 2" class="yes-no">
                           <h1>Czy na pewno chcesz usunąć?</h1>
                           <div class="container">
@@ -222,10 +222,20 @@
                           </div>
                         </div>
 
+                        <!-- panel edycji zawodnika -->
                         <div v-else-if="playerProfileMode === 3" class="container category-nav">
                           <form action="">
                             <div class="row">
-                              <div class="form-group col-8">
+                              <div class="col-8 col-lg-10"></div>
+                              <div class="col-2 col-lg-1 icon">
+                                <i class="fa-solid fa-check" @click="editPlayerSave"></i> 
+                              </div>
+                              <div class="col-2 col-lg-1 icon">
+                                <i class="fa-solid fa-xmark" @click="goToPlayerDetails"></i>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-sm-8">
                                 <label for="name">Imię:</label>
                                 <div class="input-wrapper">
                                   <input class="edit-event" v-model="newPlayerEdited.name" placeholder="Imię" type="text" id="name" name="name" required>
@@ -233,14 +243,7 @@
                                   <i v-show="inputEmpty && newPlayerEdited.name === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                                 </div>
                               </div>
-                              <div class="col-2"></div>
-                              <div class="col-1 icon">
-                                <i class="fa-solid fa-check" @click="editPlayerSave"></i> 
-                              </div>
-                              <div class="col-1 icon">
-                                <i class="fa-solid fa-xmark" @click="goToPlayerDetails"></i>
-                              </div>
-                              <div class="form-group col-8">
+                              <div class="form-group col-sm-8">
                                 <label for="surname">Nazwisko:</label>
                                 <div class="input-wrapper">
                                   <input class="edit-event" v-model="newPlayerEdited.surname" placeholder="Nazwisko" type="text" id="surname" name="surname" required>
@@ -248,7 +251,7 @@
                                   <i v-show="inputEmpty && newPlayerEdited.surname === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                                 </div>
                               </div>
-                              <div class="form-group col-8">
+                              <div class="form-group col-sm-8">
                                 <label for="club">Klub:</label>
                                 <div class="input-wrapper">
                                   <input class="edit-event" v-model="newPlayerEdited.club" placeholder="Klub" type="text" id="club" name="club" required>
@@ -256,7 +259,7 @@
                                   <i v-show="inputEmpty && newPlayerEdited.club === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                                 </div>
                               </div>
-                              <div class="form-group col-8">
+                              <div class="form-group col-sm-8">
                                 <label for="sport">Sport</label>
                                 <div class="input-wrapper">
                                   <input class="edit-event" v-model="newPlayerEdited.sport" placeholder="Sport" type="text" id="sport" name="sport" required>
@@ -264,7 +267,7 @@
                                   <i v-show="inputEmpty && newPlayerEdited.sport === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                                 </div>
                               </div>
-                              <div class="form-group col-8">
+                              <div class="form-group col-sm-8">
                                 <label for="city">Miasto:</label>
                                 <div class="input-wrapper">
                                   <input class="edit-event" v-model="newPlayerEdited.city" placeholder="Miasto" type="text" id="city" name="city" required>
@@ -272,7 +275,7 @@
                                   <i v-show="inputEmpty && newPlayerEdited.city === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                                 </div>
                               </div>
-                              <div class="form-group col-8">
+                              <div class="form-group col-sm-8">
                                 <label for="country">Kraj:</label>
                                 <div class="input-wrapper">
                                   <input class="edit-event" v-model="newPlayerEdited.country" placeholder="Kraj" type="text" id="country" name="country" required>
@@ -280,7 +283,7 @@
                                   <i v-show="inputEmpty && newPlayerEdited.country === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                                 </div>
                               </div>
-                              <div class="form-group col-8">
+                              <div class="form-group col-sm-8">
                                 <label for="birth">Data Urodzenia:</label>
                                 <div class="input-wrapper">
                                   <input class="edit-event" v-model="newPlayerEdited.birth" type="date" id="birth" name="birth" required>
@@ -290,86 +293,8 @@
                               </div>
                             </div>
                           </form>
-
-
-
-
-
-
-
-
-
-                          
-                        <!-- <div v-else-if="eventDetailsMode === 3 && selectedEventIndex === index" class="container category-nav">
-                          <form action="">
-                            <div class="row">
-                              <div class="form-group col-8">
-                                <label for="event-name">Wydarzenie:</label>
-                                <div class="input-wrapper">
-                                  <input class="edit-event" v-model="newEventEdited.eventName" placeholder="Wydarzenie" type="text" id="event-name" name="event-name" required>
-                                  <i v-show="newEventEdited.eventName !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                  <i v-show="inputEmpty && newEventEdited.eventName === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                </div>
-                              </div>
-                              <div class="col-2"></div>
-                              <div class="col-1 icon">
-                                <i class="fa-solid fa-check" @click="editEventSave"></i>
-                              </div>
-                              <div class="col-1 icon">
-                                <i class="fa-solid fa-xmark" @click="goToEventDetails"></i>
-                              </div>
-                              <div class="form-group col-8">
-                                <label for="event-city">Miasto:</label>
-                                <div class="input-wrapper">
-                                  <input class="edit-event" v-model="newEventEdited.eventCity" placeholder="Miasto" type="text" id="event-city" name="event-city" required>
-                                  <i v-show="newEventEdited.eventCity !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                  <i v-show="inputEmpty && newEventEdited.eventCity === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                </div>
-                              </div>
-                              <div class="form-group col-8">
-                                <label for="event-country">Kraj:</label>
-                                <div class="input-wrapper">
-                                  <input class="edit-event" v-model="newEventEdited.eventCountry" placeholder="Kraj" type="text" id="event-country" name="event-country" required>
-                                  <i v-show="newEventEdited.eventCountry !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                  <i v-show="inputEmpty && newEventEdited.eventCountry === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                </div>
-                              </div>
-                              <div class="form-group col-8">
-                                <label for="start">Start wydarzenia:</label>
-                                <div class="input-wrapper">
-                                  <input class="edit-event" v-model="newEventEdited.start" type="date" id="start" name="start" required>
-                                  <i v-show="newEventEdited.start !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                  <i v-show="inputEmpty && newEventEdited.start === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                </div>
-                              </div>
-                              <div class="form-group col-8">
-                                <label for="end">Koniec wydarzenia:</label>
-                                <div class="input-wrapper">
-                                  <input class="edit-event" v-model="newEventEdited.end" type="date" id="end" name="end" required>
-                                  <i v-show="newEventEdited.end !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                  <i v-show="inputEmpty && newEventEdited.end === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                </div>
-                              </div>
-                            </div>
-                          </form>
-                        </div> -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
                         </div>
+
                       </div>
                     </td>
                   </tr>
@@ -398,7 +323,16 @@
             <div v-if="newEventForm" class="container category-nav">
               <form action="">
                 <div class="row">
-                  <div class="form-group col-8">
+                  <div class="col-8 col-lg-10"></div>
+                  <div class="col-2 col-lg-1 icon">
+                    <i class="fa-solid fa-check" @click="addNewEventToListValidated"></i> 
+                  </div>
+                  <div class="col-2 col-lg-1 icon">
+                    <i class="fa-solid fa-xmark" @click="addNewEvent"></i>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="form-group col-sm-8">
                     <label for="event-name">Wydarzenie:</label>
                     <div class="input-wrapper">
                       <input v-model="newEvent.eventName" placeholder="Wydarzenie" type="text" id="event-name" name="event-name" required>
@@ -406,15 +340,7 @@
                       <i v-show="inputEmpty && newEvent.eventName === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-                  
-                  <div class="col-2"></div>
-                  <div class="col-1 icon">
-                    <i class="fa-solid fa-check" @click="addNewEventToListValidated"></i>
-                  </div>
-                  <div class="col-1 icon">
-                    <i class="fa-solid fa-xmark" @click="addNewEvent"></i>
-                  </div>
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="event-city">Miasto:</label>
                     <div class="input-wrapper">
                       <input v-model="newEvent.eventCity" placeholder="Miasto" type="text" id="event-city" name="event-city" required>
@@ -422,7 +348,7 @@
                       <i v-show="inputEmpty && newEvent.eventCity === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="event-country">Kraj:</label>
                     <div class="input-wrapper">
                       <input v-model="newEvent.eventCountry" placeholder="Kraj" type="text" id="event-country" name="event-country" required>
@@ -430,7 +356,7 @@
                       <i v-show="inputEmpty && newEvent.eventCountry === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="start">Start wydarzenia:</label>
                     <div class="input-wrapper">
                       <input v-model="newEvent.start" type="date" id="start" name="start" required>
@@ -438,7 +364,7 @@
                       <i v-show="inputEmpty && newEvent.start === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
                   </div>
-                  <div class="form-group col-8">
+                  <div class="form-group col-sm-8">
                     <label for="end">Koniec wydarzenia:</label>
                     <div class="input-wrapper">
                       <input v-model="newEvent.end" type="date" id="end" name="end" required>
@@ -474,6 +400,7 @@
                   <tr v-if="expandedEvents[index]" class="more-details">
                     <td colspan="5">
                       <div class="info-container">
+
                         <div v-if="eventDetailsMode === 1" class="container info-card">
                           <div class="row">
                             <h1>{{ event.eventName }}</h1>
@@ -481,24 +408,48 @@
                               <div><i class="fa-solid fa-location-dot"></i></div>
                               <div><i class="fa-regular fa-calendar"></i></div>
                               <div><i class="fa-solid fa-hourglass-start"></i></div>
-                              <div><i class="fa-solid fa-user"></i></div>
+                            </div>
+                            <div class="col-10 col-md-11 icons-text">
+                              <p>{{ event.eventCity }}, {{ event.eventCountry }}</p>
+                              <p>{{ dateFormatEvent(event.start, event.end) }}</p>
+                              <p>{{ daysLeftToStart(event.start) }}</p>
                             </div>
                             <div class="col-11">
-                              <p>{{ event.eventCity }}, {{ event.eventCountry }}</p>
-                              <p>{{ dateFormat(event.start) }} - {{ dateFormat(event.end) }}</p>
-                              <p>{{ daysLeftToStart(event.start) }}</p>
-                              <p>14 osób</p>
-                            </div>
-
-                  <!-- nav event -->
-                            <div class="col-12">
                               <ul>
                                 <li><i @click="editEvent(event, index)" class="fa-solid fa-pen-to-square"></i></li>
                                 <li><i @click="deleteEventQuestion" class="fa-solid fa-trash-can"></i></li>
                               </ul>
                             </div>
-                          </div>
+
+                        <!-- dodawanie zawodników na turniej -->
+                            <hr>
+                            <h3><b>skład</b> ( {{ event.selectedPlayers.length }} zawodników )
+                              <i v-if="!choosePlayers" @click="choosePlayersToAddToEvent" class="fa-solid fa-user-plus"></i>
+                              <i v-if="choosePlayers" class="fa-solid fa-check" @click="choosePlayersToAddToEvent"></i>
+                            </h3>
+                            
+                            <div class="col-12 roster">
+
+                              <template v-if="!choosePlayers">
+                                <div>
+                                  <ol>
+                                    <li v-for="(selectedPlayer, selectedIndex) in event.selectedPlayers" :key="selectedIndex">{{ playersAttending(selectedPlayer, event) }}</li>
+                                  </ol>
+                                </div>
+                              </template>
+
+                              <template v-else v-for="(player,playerIndex) in players" :key="playerIndex">
+                                <div>
+                                  <input type="checkbox" :id="'player' + playerIndex" :checked="isPlayerSelected(player, index)" @change="togglePlayerInEvent(player, index)">
+                                <label :for="'player' + playerIndex"><p>{{ player.name }} {{ player.surname}}</p></label>
+                                </div>
+                              </template>
+
+                            </div>
+                          </div>                 
                         </div>
+
+                        <!-- panel usuwania eventu -->
                         <div v-else-if="eventDetailsMode === 2" class="yes-no">
                           <h1>Czy na pewno chcesz usunąć?</h1>
                           <div class="container">
@@ -513,60 +464,62 @@
                           </div>
                         </div>
 
-                  <!-- edytuj event -->
-                          <div v-else-if="eventDetailsMode === 3 && selectedEventIndex === index" class="container category-nav">
-                            <form action="">
-                              <div class="row">
-                                <div class="form-group col-8">
-                                  <label for="event-name">Wydarzenie:</label>
-                                  <div class="input-wrapper">
-                                    <input class="edit-event" v-model="newEventEdited.eventName" placeholder="Wydarzenie" type="text" id="event-name" name="event-name" required>
-                                    <i v-show="newEventEdited.eventName !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                    <i v-show="inputEmpty && newEventEdited.eventName === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                  </div>
-                                </div>
-                                <div class="col-2"></div>
-                                <div class="col-1 icon">
-                                  <i class="fa-solid fa-check" @click="editEventSave"></i>
-                                </div>
-                                <div class="col-1 icon">
-                                  <i class="fa-solid fa-xmark" @click="goToEventDetails"></i>
-                                </div>
-                                <div class="form-group col-8">
-                                  <label for="event-city">Miasto:</label>
-                                  <div class="input-wrapper">
-                                    <input class="edit-event" v-model="newEventEdited.eventCity" placeholder="Miasto" type="text" id="event-city" name="event-city" required>
-                                    <i v-show="newEventEdited.eventCity !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                    <i v-show="inputEmpty && newEventEdited.eventCity === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                  </div>
-                                </div>
-                                <div class="form-group col-8">
-                                  <label for="event-country">Kraj:</label>
-                                  <div class="input-wrapper">
-                                    <input class="edit-event" v-model="newEventEdited.eventCountry" placeholder="Kraj" type="text" id="event-country" name="event-country" required>
-                                    <i v-show="newEventEdited.eventCountry !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                    <i v-show="inputEmpty && newEventEdited.eventCountry === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                  </div>
-                                </div>
-                                <div class="form-group col-8">
-                                  <label for="start">Start wydarzenia:</label>
-                                  <div class="input-wrapper">
-                                    <input class="edit-event" v-model="newEventEdited.start" type="date" id="start" name="start" required>
-                                    <i v-show="newEventEdited.start !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                    <i v-show="inputEmpty && newEventEdited.start === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                  </div>
-                                </div>
-                                <div class="form-group col-8">
-                                  <label for="end">Koniec wydarzenia:</label>
-                                  <div class="input-wrapper">
-                                    <input class="edit-event" v-model="newEventEdited.end" type="date" id="end" name="end" required>
-                                    <i v-show="newEventEdited.end !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
-                                    <i v-show="inputEmpty && newEventEdited.end === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
-                                  </div>
+                        <!-- panel edycji eventu -->
+                        <div v-else-if="eventDetailsMode === 3 && selectedEventIndex === index" class="container category-nav">
+                          <form action="">
+                            <div class="row">
+                              <div class="col-8 col-lg-10"></div>
+                              <div class="col-2 col-lg-1 icon">
+                                <i class="fa-solid fa-check" @click="editEventSave"></i> 
+                              </div>
+                              <div class="col-2 col-lg-1 icon">
+                                <i class="fa-solid fa-xmark" @click="goToEventDetails"></i>
+                              </div>
+                            </div>
+                            <div class="row">
+                              <div class="form-group col-sm-8">
+                                <label for="event-name">Wydarzenie:</label>
+                                <div class="input-wrapper">
+                                  <input class="edit-event" v-model="newEventEdited.eventName" placeholder="Wydarzenie" type="text" id="event-name" name="event-name" required>
+                                  <i v-show="newEventEdited.eventName !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                                  <i v-show="inputEmpty && newEventEdited.eventName === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                                 </div>
                               </div>
-                            </form>
-                          </div>
+                              <div class="form-group col-sm-8">
+                                <label for="event-city">Miasto:</label>
+                                <div class="input-wrapper">
+                                  <input class="edit-event" v-model="newEventEdited.eventCity" placeholder="Miasto" type="text" id="event-city" name="event-city" required>
+                                  <i v-show="newEventEdited.eventCity !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                                  <i v-show="inputEmpty && newEventEdited.eventCity === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                                </div>
+                              </div>
+                              <div class="form-group col-sm-8">
+                                <label for="event-country">Kraj:</label>
+                                <div class="input-wrapper">
+                                  <input class="edit-event" v-model="newEventEdited.eventCountry" placeholder="Kraj" type="text" id="event-country" name="event-country" required>
+                                  <i v-show="newEventEdited.eventCountry !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                                  <i v-show="inputEmpty && newEventEdited.eventCountry === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                                </div>
+                              </div>
+                              <div class="form-group col-sm-8">
+                                <label for="start">Start wydarzenia:</label>
+                                <div class="input-wrapper">
+                                  <input class="edit-event" v-model="newEventEdited.start" type="date" id="start" name="start" required>
+                                  <i v-show="newEventEdited.start !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                                  <i v-show="inputEmpty && newEventEdited.start === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                                </div>
+                              </div>
+                              <div class="form-group col-sm-8">
+                                <label for="end">Koniec wydarzenia:</label>
+                                <div class="input-wrapper">
+                                  <input class="edit-event" v-model="newEventEdited.end" type="date" id="end" name="end" required>
+                                  <i v-show="newEventEdited.end !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
+                                  <i v-show="inputEmpty && newEventEdited.end === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
+                                </div>
+                              </div>
+                            </div>
+                          </form>
+                        </div>
                         </div>
                       </div>
                     </td>
