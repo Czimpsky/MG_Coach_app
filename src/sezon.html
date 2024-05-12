@@ -4,17 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous" defer></script>
 
     <title>MG | Strength & Conditioning</title>
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    
 </head>
-<body>
+<body id="app-season">
 
 <!-- header -->
   <header>
-    <div id="app">
+    <div>
         <nav id="navbar" :style="navStyles">                
             <div class="navbar-content">
                 <a href="index.html">
@@ -54,7 +56,7 @@
     
 <!-- main -->
     <main>
-      <div class="content-container" id="app-season">
+      <div class="content-container">
         <div class="white-box">
 <!-- przełączanie kategorii -->
           <div class="toggle-category">
@@ -70,7 +72,7 @@
             </div>
           </div>
 
-  <!-- zawodnicy -->
+<!-- zawodnicy -->
           <div v-if="playersDisplayed">
             
             <!-- szukaj zawodnika -->
@@ -168,10 +170,11 @@
                     <th></th>
                   </tr>
                 </thead>
-                <tbody  v-for="(player, index) in searchPlayers" :key="index">
-                  <tr :class="{ 'player-profile-active': expandedPlayers[index] }">
+                <tbody  v-for="(player, index) in searchSortedPlayers" :key="index">
+                  <tr 
+                  :class="{ 'player-profile-active': expandedPlayers[index] }">
                     <td>{{ index + 1 }}</td>
-                    <td>{{ player.name }} {{ player.surname }}</td>
+                    <td>{{ player.surname }} {{ player.name }}</td>
                     <td>{{ player.club }}</td>
                     <td>
                       <i class="fa-solid fa-caret-down" @click="toggleProfile(index)" :class="{ 'rotate-icon': expandedPlayers[index] }"></i>
@@ -185,7 +188,7 @@
 
                         <div v-if="playerProfileMode === 1" class="container info-card">
                           <div class="row">
-                            <h1>{{ player.name }} {{ player.surname }}</h1>
+                            <h1>{{ player.surname }} {{ player.name }}</h1>
                             <div class="col-1 icons">
                               <div><i class="fa-solid fa-shield"></i></div>
                               <div><i class="fa-solid fa-location-dot"></i></div>
@@ -302,7 +305,7 @@
             </table>
           </div>
 
-  <!-- wydarzenia -->
+<!-- wydarzenia -->
 
           <!-- szukaj event -->
           <div v-if="playersDisplayed === false">
@@ -367,7 +370,7 @@
                   <div class="form-group col-sm-8">
                     <label for="end">Koniec wydarzenia:</label>
                     <div class="input-wrapper">
-                      <input v-model="newEvent.end" type="date" id="end" name="end" required>
+                      <input v-model="newEvent.end" type="date" id="end" name="end" required :min="newEvent.start">
                       <i v-show="newEvent.end !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
                       <i v-show="inputEmpty && newEvent.end === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                     </div>
@@ -386,10 +389,10 @@
                     <th></th>
                   </tr>
                 </thead>
-                <tbody v-for="(event, index) in searchEvents" :key="index">
-                  <tr :class="{ 'event-profile-active': expandedEvents[index] }">
+                <tbody v-for="(event, index) in searchSortedEvents" :key="index">
+                  <tr :class="{ 'event-profile-active': expandedEvents[index] }"  :style="eventEndedStyle(event)">
                     <td>{{ index + 1 }}</td>
-                    <td>{{ event.eventName }}</td>
+                    <td >{{ event.eventName }}</td>
                     <td>{{ dateFormat(event.start) }}</td>
                     <td>
                       <i class="fa-solid fa-caret-down" @click="toggleEvent(index)" :class="{ 'rotate-icon': expandedEvents[index] }"></i>
@@ -423,7 +426,7 @@
 
                         <!-- dodawanie zawodników na turniej -->
                             <hr>
-                            <h3><b>skład</b> ( {{ event.selectedPlayers.length }} zawodników )
+                            <h3><b>skład</b><span> ( {{ event.selectedPlayers.length }} zawodników )</span>
                               <i v-if="!choosePlayers" @click="choosePlayersToAddToEvent" class="fa-solid fa-user-plus"></i>
                               <i v-if="choosePlayers" class="fa-solid fa-check" @click="choosePlayersToAddToEvent"></i>
                             </h3>
@@ -512,7 +515,7 @@
                               <div class="form-group col-sm-8">
                                 <label for="end">Koniec wydarzenia:</label>
                                 <div class="input-wrapper">
-                                  <input class="edit-event" v-model="newEventEdited.end" type="date" id="end" name="end" required>
+                                  <input class="edit-event" v-model="newEventEdited.end" type="date" id="end" name="end" required :min="newEventEdited.start">
                                   <i v-show="newEventEdited.end !== '' || inputEmpty" class="fa-regular fa-circle-check val-icon" style="color: #00dc00;"></i>
                                   <i v-show="inputEmpty && newEventEdited.end === ''" class="fa-regular fa-circle-xmark val-icon" style="color: #ff0000;"></i>
                                 </div>
@@ -539,7 +542,5 @@
           <p>2024 MG Coach. All rights reserved</p>
       </div>
   </footer>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 </body>
 </html>

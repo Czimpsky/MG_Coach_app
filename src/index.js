@@ -1,9 +1,9 @@
-import { style } from "./css/index.scss"
+import { style } from "./css/index.scss";
 
-Vue.createApp({
+const app = Vue.createApp({
     data(){
         return{
-            menuOpen: false,
+            menuOpen: false
         }
     },
 
@@ -25,9 +25,27 @@ Vue.createApp({
         }
     },
 
+
+
+//weather API
+    created(){        
+        axios({
+            url: "https://danepubliczne.imgw.pl/api/data/synop",
+        }).then((response) => {
+            let weatherForecast = response.data;
+
+            console.log(weatherForecast)
+            // weatherForecast.forEach((city) => {
+
+            // })
+        }).catch((error) => {
+            console.error('Dane pogodowe nie pobrały się')
+        });
+    },
+
     methods: {
         toggleMenuIcon(){
             this.menuOpen = !this.menuOpen;
         }
     }
-}).mount("#app-nav")
+}).mount("#app-main");

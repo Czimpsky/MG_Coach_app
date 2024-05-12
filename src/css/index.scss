@@ -28,14 +28,6 @@ body {
     h3{
         font-size: typography.$font-size-h3;
         font-weight: typography.$font-weight-bold;
-        color: colors.$color-navy;
-    }
-
-    h4{
-        text-align: center;
-        font-size: typography.$font-size-h3;
-        font-weight: typography.$font-weight-regular;
-        color: colors.$color-navy;
     }
 
     i:hover{
@@ -183,6 +175,12 @@ body {
         }
     }
     
+    .main-index{
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
 /* main */
     main{
         padding-top: 115px;
@@ -192,89 +190,113 @@ body {
             border-top: 1px solid colors.$color-light;
         }
 
-        .content-container{
-            width: 100%;
-            padding: 0 15px;
-
 /* landing page */
-            .runner{
-                display: flex;
-                justify-content: center;
-                align-items: center;
-                margin: 0 auto;
-                max-width: 100%;
+        .main-bcg{
+            overflow: hidden;
+
+            img{
+                position: fixed;
+                top: 0;
+                left: 0%;
+                margin: 0;
+                min-height: 100%;
+                min-width: 100%;
+                z-index: 0;
             }
+        }
 
-            .event-item{
-                @include mixins.white-box;
-                margin-bottom: 10px;
+        .content-container{
+            padding: 0 15px;
+            height: 100%;
 
-                h1{
-                    margin-bottom: 10px;
-                }
-
-                .start{
-                    background-color: colors.$color-medium;
-                    color: colors.$color-white;
-                    border-radius: 10px;
-                    text-align: center;
-                }
-
-                .end{
-                    background-color: colors.$color-white;
-                    color: colors.$color-medium;
-                    border-radius: 10px;
-                    text-align: center;
-                }
-
-                .month{
-                    align-items: center;
-                    font-size: typography.$font-size-month;
-                    font-weight: typography.$font-weight-date;
-                }
-
-                .day{
-                    align-items: center;
-                    font-size: typography.$font-size-day;
-                    font-weight: typography.$font-weight-date;
-                }
+            .landing-page{
+                position: relative;
+                z-index: 1;
                 
-                .event-info{
+                .text-container{
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
 
-                    ul{
-                        list-style: none;
-
-                        li{
-                            font-size: typography.$font-size-event;
-                            font-weight: typography.$font-weight-regular;
-                            color: colors.$color-medium;
-
-                            i{
-                                padding-right: 20px;
-                            }
-                        }
+                    h1{
+                        margin: 0 10px 20px 10px;
+                        color: colors.$color-recent;
+                        font-weight: typography.$font-weight-h1;
+                        font-size: typography.$font-size-main;
+                        margin-bottom: 20px;
+                    }
+    
+                    p{
+                        margin: 0 10px;
+                        color: white;
+                        font-weight: typography.$font-weight-light
                     }
                 }
 
-                @media only screen and (min-width: 1200px) {
-                    width: 50%
+                .blocks-container{
+                    height: 100%;
+                    color: white;
+
+                    .block{
+                        width: 100%;
+                        height: 100px;
+                        border: 1px solid colors.$color-recent;
+                        margin-top: 30px;
+                    }
+
+                    .next-event{
+                        height: auto;
+                        min-height: 100px;
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: space-between;
+
+                        .info{
+                            display: flex;
+                            justify-content: space-between;
+
+                            .when{
+                                color: colors.$color-recent;
+                            }
+                        }
+
+                        h1{
+                            margin: 5px;
+                            color: colors.$color-recent;
+                            font-weight: typography.$font-size-main;
+                        }
+
+                        h3{
+                            margin: 5px;
+                            font-weight: typography.$font-weight-light
+                        }
+                    }
+
+                    .contact-link{
+                        text-decoration: none;
+                        color: colors.$color-recent;
+                        
+                        .contact{
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            background-color: colors.$color-recent;
+                            color: colors.$color-navy;
+
+                            h1{
+                                font-size: typography.$font-size-block;
+                                margin: 0;
+                            }
+
+                            &:hover{
+                                transition: 0.3s ease-in-out;
+                                background-color: transparent;
+                                color: colors.$color-recent;
+                            }
+                        }                        
+                    }
                 }
             }
-
-            .api-container{
-                @include mixins.white-box;
-                text-align: center;
-
-                @media only screen and (min-width: 1200px) {
-                    width: 50%
-                }
-
-                i{
-                    color: colors.$color-medium;
-                    font-size: 10rem;
-                }
-            }
-
 
             .white-box{
                 @include mixins.white-box;
@@ -341,7 +363,9 @@ body {
 
 /* footer */
     footer{
+        position: relative;
         width: 100%;
+        z-index: 2;
 
         .info-footer{
             background-color: colors.$color-navy;

@@ -212,6 +212,14 @@
 
                     h3{
 
+                        b{
+                            font-weight: typography.$font-weight-h1;
+                        }
+
+                        span{
+                            color: colors.$color-medium
+                        }
+
                         i{
                             margin-left: 5px;
                             font-size: 15px;
@@ -248,11 +256,11 @@
         justify-content: row;
         position: absolute;
         right: 20px;
-        top: 145px;
+        top: 40px;
 
-        @media only screen and (min-width: 447px) {
-            top: 125px;
-        }
+        // @media only screen and (min-width: 447px) {
+        //     top: 125px;
+        // }
 
         li{
             list-style: none;

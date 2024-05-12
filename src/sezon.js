@@ -1,41 +1,9 @@
-import { style } from "./css/index.scss"
+import { style } from "./css/index.scss";
 
-Vue.createApp({
+const appSeason = Vue.createApp({
     data(){
         return{
             menuOpen: false,
-        }
-    },
-
-    computed:{
-        navStyles(){
-            return{
-                height: this.menuOpen ? '100vh' : '100px',
-                transition: 'height 0.3s ease-in-out',
-            }
-        },
-
-        menuExtend(){
-            return{
-                opacity: this.menuOpen ? '1' : '0',
-                transition: 'opacity 0.4s ease-in-out',
-                transitionDelay: this.menuOpen ? '0s' : '0.4s',
-                
-            }
-        }
-    },
-
-    methods: {
-        toggleMenuIcon(){
-            this.menuOpen = !this.menuOpen;
-        }
-    }
-}).mount("#app")
-
-
-Vue.createApp({
-    data(){
-        return{
             playersDisplayed: true,
             players: [
                 { name: 'Maciek', surname: 'Grabowski', club: 'KS Mojra Warszawa', sport: 'Ultimate', city: 'Warszawa', country: 'Polska', birth: '1990-02-22'},
@@ -62,18 +30,19 @@ Vue.createApp({
                 birth: ''
             },
             events: [
-                {eventName: 'MP Mixed Runda Wiosenna', eventCity: '???', eventCountry: 'Polska', start: '2024-05-11', end: '2024-05-12', selectedPlayers: []},
+                {eventName: 'Sandslash', eventCity: 'Dębki', eventCountry: 'Polska', start: '2023-08-18', end: '2023-08-20', selectedPlayers: []},
                 {eventName: 'MP Open', eventCity: '???', eventCountry: 'Polska', start: '2024-05-25', end: '2024-05-26', selectedPlayers: []},
                 {eventName: 'Windmill Windup', eventCity: 'Amsterdam', eventCountry: 'Holandia', start: '2024-06-14', end: '2024-06-16', selectedPlayers: []},
-                {eventName: 'PMP', eventCity: '???', eventCountry: 'Polska', start: '2024-06-29', end: '2024-06-30', selectedPlayers: []},
-                {eventName: 'Mistrzostwa Warszawy', eventCity: '???', eventCountry: 'Polska', start: '2024-07-06', end: '2024-07-07', selectedPlayers: []},
-                {eventName: 'Top Cat', eventCity: '???', eventCountry: 'Polska', start: '2024-07-13', end: '2024-07-14', selectedPlayers: []},
+                {eventName: 'PMP', eventCity: 'Gdańsk', eventCountry: 'Polska', start: '2024-06-29', end: '2024-06-30', selectedPlayers: []},
+                {eventName: 'Mistrzostwa Warszawy', eventCity: 'Warszawa', eventCountry: 'Polska', start: '2024-07-06', end: '2024-07-07', selectedPlayers: []},
+                {eventName: 'Top Cat', eventCity: 'Warszawa', eventCountry: 'Polska', start: '2024-07-13', end: '2024-07-14', selectedPlayers: []},
                 {eventName: 'WJUC', eventCity: 'Birmingham', eventCountry: 'Wielka Brytania', start: '2024-07-20', end: '2024-07-27', selectedPlayers: []},
                 {eventName: 'Sandslash', eventCity: 'Dębki', eventCountry: 'Polska', start: '2024-08-23', end: '2024-08-25', selectedPlayers: []},
                 {eventName: 'MMP Mixed', eventCity: '???', eventCountry: 'Polska', start: '2024-09-07', end: '2024-09-08', selectedPlayers: []},
                 {eventName: 'MP Mixed', eventCity: '???', eventCountry: 'Polska', start: '2024-09-20', end: '2024-09-22', selectedPlayers: []},
                 {eventName: 'EUCF', eventCity: '???', eventCountry: '???', start: '2024-09-27', end: '2024-09-29', selectedPlayers: []},
                 {eventName: 'WBUCC', eventCity: 'Portimao', eventCountry: 'Portugalia', start: '2024-10-14', end: '2024-10-19', selectedPlayers: []},
+                {eventName: 'MP Mixed Runda Wiosenna', eventCity: 'Olsztynek', eventCountry: 'Polska', start: '2024-05-11', end: '2024-05-12', selectedPlayers: []},
             ],
             newEvent:{
                 eventName: '',
@@ -100,25 +69,70 @@ Vue.createApp({
             eventDetailsMode: 1,
             selectedEventIndex: null,
             selectedPlayerIndex: null,
-            choosePlayers: false
+            choosePlayers: false,
+            eventEnded: false
         }
     },
 
     computed: {
-        searchEvents(){
+        navStyles(){
+            return{
+                height: this.menuOpen ? '100vh' : '100px',
+                transition: 'height 0.3s ease-in-out',
+            }
+        },
+
+        menuExtend(){
+            return{
+                opacity: this.menuOpen ? '1' : '0',
+                transition: 'opacity 0.4s ease-in-out',
+                transitionDelay: this.menuOpen ? '0s' : '0.4s',
+                
+            }
+        },
+
+        searchSortedEvents(){
             const searchData = this.searchEventInput.toLowerCase().trim();
 
-            return this.events.filter(event => {
+            const filteredEvents =  this.events.filter(event => {
                 const eventName = event.eventName.toLowerCase();
 
                 return eventName.includes(searchData)
             })
-        },  
 
-        searchPlayers(){
+            const currentDate = new Date();
+
+            return filteredEvents.sort((a, b) => {
+                const dateA = new Date(a.start);
+                const dateB = new Date(b.start);
+
+                if(dateA < currentDate && dateB < currentDate){
+                    return 1;
+                } else if (dateA < currentDate){
+                    return 0;
+                } else if (dateB < currentDate){
+                    return -1;
+                } else {
+                    return dateA - dateB;
+                }
+            })
+        },
+
+        closestSortedEvent() {
+            const sortedEvents = this.searchSortedEvents;
+
+            if (sortedEvents.length > 0) {
+                const closestEvent = sortedEvents[0];
+                return closestEvent;
+            } else {
+                return null;
+            }
+        },
+
+        searchSortedPlayers(){
             const searchData = this.searchPlayerInput.toLowerCase().trim();
 
-            return this.players.filter(player => {
+            const filteredPlayers = this.players.filter(player => {
                 const playerName = player.name.toLowerCase();
                 const playerSurname = player.surname.toLowerCase();
                 const playerClub = player.club.toLowerCase();
@@ -129,10 +143,33 @@ Vue.createApp({
                     playerClub.includes(searchData)
                 )
             })
+
+            return filteredPlayers.sort((a, b) => {
+                return a.surname.localeCompare(b.surname);
+            })
         },
     },
 
     methods: {
+// menu 
+        toggleMenuIcon(){
+            this.menuOpen = !this.menuOpen;
+        },
+
+// ostylowanie eventów, które się juz skonczyly
+        eventEndedStyle(event){
+            const currentDate = new Date();
+            const eventStartDate = new Date(event.start)
+
+            if (eventStartDate < currentDate){
+                return{
+                    backgroundColor: 'rgb(87,188,179)'
+                }
+            } else {
+                return {}
+            }
+        },
+
 // dodawanie zawodników do eventów
         playersAttending(player, event){
             if (event.selectedPlayers.includes(player)) {
@@ -256,6 +293,8 @@ Vue.createApp({
               this.inputEmpty = false;
               this.addNewPlayerToList();
             }
+
+            this.newPlayerForm = !this.newPlayerForm;
         },
     
 // profil zawodnika
@@ -264,9 +303,9 @@ Vue.createApp({
         },
 
         deletePlayerYes(index){
+            this.searchSortedPlayers.splice(index, 1);
             this.playerProfileMode = 1;
             this.expandedPlayers = [];
-            this.players.splice(index, 1);
         },
 
         goToPlayerDetails(){
@@ -369,6 +408,8 @@ Vue.createApp({
               this.inputEmpty = false;
               this.addNewEventToList();
             }
+
+            this.newEventForm = !this.newEventForm;
         },     
 
 // szczegóły wydarzenia
@@ -377,9 +418,9 @@ Vue.createApp({
         },
 
         deleteEventYes(index){
+            this.searchSortedEvents.splice(index, 1);
             this.eventDetailsMode = 1;
             this.expandedEvents = [];
-            this.events.splice(index, 1);
         },
 
         goToEventDetails(){
@@ -469,5 +510,5 @@ Vue.createApp({
 
             return age
         },
-    }
+    },
 }).mount("#app-season")
