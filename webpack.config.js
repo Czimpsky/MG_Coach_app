@@ -25,19 +25,21 @@ module.exports = {
     plugins: [
         new HtmlWebpackPlugin({
             template: "./src/index.html",
-            inject: true
+            filename: "index.html",
+            chunks: ['index']
+            // inject: true
         }),
         new HtmlWebpackPlugin({
             template: "./src/kontakt.html",
-            inject: true,
-            chunks: ['kontakt'],
-            filename: 'kontakt.html'
+            filename: "kontakt.html",
+            chunks: ['kontakt']
+            // inject: true,
         }),
         new HtmlWebpackPlugin({
             template: "./src/sezon.html",
-            inject: true,
-            chunks: ['sezon'],
-            filename: 'sezon.html'
+            filename: "sezon.html",
+            chunks: ['sezon']
+            // inject: true,
         }),
         new MiniCssExtractPlugin(),
         new CopyWebpackPlugin({

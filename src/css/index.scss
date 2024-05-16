@@ -217,6 +217,7 @@ body {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
+                    text-align: center;
 
                     h1{
                         margin: 0 10px 20px 10px;
@@ -244,57 +245,97 @@ body {
                         margin-top: 30px;
                     }
 
-                    .next-event{
-                        height: auto;
-                        min-height: 100px;
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: space-between;
+                    h1{
+                        color: colors.$color-recent;
+                        font-weight: typography.$font-size-main;
+                    }
 
-                        .info{
-                            display: flex;
-                            justify-content: space-between;
+                    h3{
+                        font-weight: typography.$font-weight-light
+                    }
 
-                            .when{
-                                color: colors.$color-recent;
-                            }
-                        }
-
-                        h1{
-                            margin: 5px;
-                            color: colors.$color-recent;
-                            font-weight: typography.$font-size-main;
-                        }
+                    a{
+                        text-decoration: none;
 
                         h3{
-                            margin: 5px;
-                            font-weight: typography.$font-weight-light
+                            color: white;
                         }
                     }
 
-                    .contact-link{
-                        text-decoration: none;
-                        color: colors.$color-recent;
-                        
-                        .contact{
+                    .next-event{
+
+                        .event-info{
+                            margin: 0 5px;
                             display: flex;
-                            align-items: center;
+                            flex-direction: column;
+                            justify-content: space-between;
+    
+                            .event-start{
+                                text-align: right;
+                            }
+                        }
+
+                        .no-events{
+                            height: 100%;
+                            display: flex;
                             justify-content: center;
-                            background-color: colors.$color-recent;
-                            color: colors.$color-navy;
-
-                            h1{
-                                font-size: typography.$font-size-block;
-                                margin: 0;
-                            }
-
-                            &:hover{
-                                transition: 0.3s ease-in-out;
-                                background-color: transparent;
-                                color: colors.$color-recent;
-                            }
-                        }                        
+                            align-items: center;
+                            text-align: center;
+                        }
                     }
+
+                    .weather-api{
+                        height: 100%;
+                        white-space: nowrap;
+
+                        select{
+                            width: 100%;
+                            background-color: colors.$color-navy;
+                            color: colors.$color-recent;
+                            font-size: typography.$font-size-h1;
+                        }
+
+                        .weather-info{
+                            margin-top: 15px;
+                        }
+
+                        .weather-img{
+                            display: flex;
+                            justify-content: center;
+                            align-items: center;
+                            transform: scale(0.7);
+
+                            img{
+                                margin: 0;
+                                max-width: 100%;
+                                height: auto;
+                            }
+                        }
+                    }
+
+                    .contact-link {
+                        text-decoration: none;
+                        color: colors.$color-navy;
+                      
+                        .contact {
+                          display: flex;
+                          align-items: center;
+                          justify-content: center;
+                          background-color: colors.$color-recent;
+                      
+                          h1 {
+                            color: colors.$color-navy;
+                            font-size: typography.$font-size-block;
+                            margin: 0;
+                          }
+                      
+                          &:hover {
+                            transition: 0.3s ease-in-out;
+                            background-color: transparent;
+                            color: colors.$color-recent;
+                          }
+                        }
+                      }
                 }
             }
 
