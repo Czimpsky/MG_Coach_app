@@ -214,10 +214,14 @@ body {
 
             img {
                 position: absolute;
-                top: 0;
-                left: 0;
-                width: 100%;
-                height: 100%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                width: auto;
+                height: auto;
+                min-width: 100%;
+                min-height: 100%;
+                object-fit: cover;
             }
         }
 
@@ -335,33 +339,6 @@ body {
                             }
                         }
                     }
-
-                    .contact-link {
-                        text-decoration: none;
-                        color: colors.$color-navy;
-                      
-                        .contact {
-                          display: flex;
-                          align-items: center;
-                          justify-content: center;
-                          background-color: colors.$color-recent;
-
-                          &:hover {
-                            transition: 0.3s ease-in-out;
-                            background-color: transparent;
-                            
-                            h1 {
-                              color: colors.$color-recent;
-                            }
-                          }
-                      
-                          h1 {
-                            color: colors.$color-navy;
-                            font-size: typography.$font-size-block;
-                            margin: 0;
-                          }
-                        }
-                    }
                 }
             }
 
@@ -444,6 +421,25 @@ body {
 
             button{
                 @include mixins.button-contact;
+            }
+        }
+
+        .contact-text{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: center;
+
+            h1{
+                margin: 0 10px 20px 10px;
+                color: colors.$color-recent;
+                font-weight: typography.$font-weight-h1;
+                font-size: typography.$font-size-main;
+                margin-bottom: 20px;
+            }
+
+            @media only screen and (max-width: 767px) {
+                display: none;
             }
         }
     }

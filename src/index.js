@@ -163,14 +163,8 @@ const app = Vue.createApp({
         },
 
         togglePlayerInEvent(player, eventIndex) {
-            // console.log('searchSortedEvents:', this.searchSortedEvents);
-            // console.log('eventIndex:', eventIndex);
-
-            // const event = this.events[eventIndex];
             const event = this.searchSortedEvents[eventIndex];
-            
             const playerIndex = event.selectedPlayers.indexOf(player);
-            // const playerIndex = event.selectedPlayers.findIndex(p => p.name === player.name && p.surname === player.surname);
 
             if (playerIndex === -1) {
                 event.selectedPlayers.push(player);
@@ -180,7 +174,6 @@ const app = Vue.createApp({
         },
 
         isPlayerSelected(player, eventIndex) {
-            // const event = this.events[eventIndex];
             const event = this.searchSortedEvents[eventIndex];
             return event.selectedPlayers.includes(player);
         },
