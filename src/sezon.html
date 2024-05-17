@@ -41,13 +41,13 @@
           <div v-if="playersDisplayed">
             
             <!-- szukaj zawodnika -->
-            <div v-if="newPlayerForm === false" class="container category-nav">
+            <div v-if="!newPlayerForm" class="container category-nav">
               <div class="row">
                 <div  class="col-10">
                   <input v-model="searchPlayerInput" class="input-search" type="text" placeholder="Szukaj zawodnika">
                 </div>
                 <div class="col-2 icon">
-                  <i class="fa-solid fa-user-plus" @click="addNewPlayer"></i></i>
+                  <i class="fa-solid fa-user-plus" @click="addNewPlayer"></i>
                 </div>
               </div>
             </div>
@@ -196,7 +196,7 @@
                             <div class="row">
                               <div class="col-8 col-lg-10"></div>
                               <div class="col-2 col-lg-1 icon">
-                                <i class="fa-solid fa-check" @click="editPlayerSave"></i> 
+                                <i class="fa-solid fa-check" @click="editPlayerSave(index)"></i> 
                               </div>
                               <div class="col-2 col-lg-1 icon">
                                 <i class="fa-solid fa-xmark" @click="goToPlayerDetails"></i>
@@ -438,7 +438,7 @@
                             <div class="row">
                               <div class="col-8 col-lg-10"></div>
                               <div class="col-2 col-lg-1 icon">
-                                <i class="fa-solid fa-check" @click="editEventSave"></i> 
+                                <i class="fa-solid fa-check" @click="editEventSave(index)"></i> 
                               </div>
                               <div class="col-2 col-lg-1 icon">
                                 <i class="fa-solid fa-xmark" @click="goToEventDetails"></i>

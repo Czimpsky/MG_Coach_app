@@ -4,7 +4,7 @@ import { style } from "./css/index.scss";
 const app = Vue.createApp({
     data(){
         return{
-            playersDisplayed: true,
+            playersDisplayed: false,
             players: [
                 { name: 'Maciek', surname: 'Grabowski', club: 'KS Mojra Warszawa', sport: 'Ultimate', city: 'Warszawa', country: 'Polska', birth: '1990-02-22'},
                 { name: 'Robert', surname: 'Lewandowski', club: 'FC Barcelona', sport: 'Piłka Nozna', city: 'Barcelona', country: 'Hiszpania', birth: '1988-08-21'},
@@ -163,10 +163,14 @@ const app = Vue.createApp({
         },
 
         togglePlayerInEvent(player, eventIndex) {
-            const event = this.events[eventIndex];
-            const playerIndex = event.
+            // console.log('searchSortedEvents:', this.searchSortedEvents);
+            // console.log('eventIndex:', eventIndex);
+
+            // const event = this.events[eventIndex];
+            const event = this.searchSortedEvents[eventIndex];
             
-            selectedPlayers.indexOf(player);
+            const playerIndex = event.selectedPlayers.indexOf(player);
+            // const playerIndex = event.selectedPlayers.findIndex(p => p.name === player.name && p.surname === player.surname);
 
             if (playerIndex === -1) {
                 event.selectedPlayers.push(player);
@@ -176,7 +180,8 @@ const app = Vue.createApp({
         },
 
         isPlayerSelected(player, eventIndex) {
-            const event = this.events[eventIndex];
+            // const event = this.events[eventIndex];
+            const event = this.searchSortedEvents[eventIndex];
             return event.selectedPlayers.includes(player);
         },
 
@@ -267,13 +272,12 @@ const app = Vue.createApp({
             let validation = this.playersInputsValidation();
 
             if (validation) {
-              this.inputEmpty = true;
+                this.inputEmpty = true;
             } else {
-              this.inputEmpty = false;
-              this.addNewPlayerToList();
+                this.inputEmpty = false;
+                this.addNewPlayerToList();
+                this.newPlayerForm = !this.newPlayerForm;
             }
-
-            this.newPlayerForm = !this.newPlayerForm;
         },
     
 // profil zawodnika
@@ -292,37 +296,25 @@ const app = Vue.createApp({
         },
 
         editPlayer(player,index) {
-            if (index >= 0 && index < this.players.length) {
-                this.selectedPlayerIndex = index;
-                this.newPlayerEdited = { ...player };
-                this.playerProfileMode = 3;
-            } else {
-                console.error("Invalid event index.");
-            }
+            this.selectedPlayerIndex = index;
+            this.newPlayerEdited = { ...player };
+            this.playerProfileMode = 3;
         },
 
-        editPlayerSave() {
+        editPlayerSave(index) {
             let validation = this.playerInputsEditValidation();
 
             if (validation) {
                 this.inputEmpty = true;
             } else {
                 this.inputEmpty = false;
+
                 if (this.selectedPlayerIndex !== null && this.selectedPlayerIndex !== undefined) {
-                    let editedPlayer = { ...this.players[this.selectedPlayerIndex] };
-            
-                    editedPlayer.name = this.newPlayerEdited.name;
-                    editedPlayer.surname = this.newPlayerEdited.surname;
-                    editedPlayer.club = this.newPlayerEdited.club;
-                    editedPlayer.sport = this.newPlayerEdited.sport;
-                    editedPlayer.city = this.newPlayerEdited.city;
-                    editedPlayer.country = this.newPlayerEdited.country;
-                    editedPlayer.birth = this.newPlayerEdited.birth;
-                    
-                    this.players.splice(this.selectedPlayerIndex, 1, editedPlayer)
+                    this.searchSortedPlayers.splice(index, 1, { ...this.newPlayerEdited });
+                    this.playerProfileMode = 1;
                 }
 
-                this.playerProfileMode = 1;
+                
             }
         },
 
@@ -382,13 +374,12 @@ const app = Vue.createApp({
             let validation = this.eventInputsValidation();
             
             if (validation) {
-              this.inputEmpty = true;
+                this.inputEmpty = true;
             } else {
-              this.inputEmpty = false;
-              this.addNewEventToList();
+                this.inputEmpty = false;
+                this.addNewEventToList();
+                this.newEventForm = !this.newEventForm;
             }
-
-            this.newEventForm = !this.newEventForm;
         },     
 
 // szczegóły wydarzenia
@@ -407,37 +398,27 @@ const app = Vue.createApp({
         },
 
         editEvent(event,index) {
-            if (index >= 0 && index < this.events.length) {
-                this.selectedEventIndex = index;
-                this.newEventEdited = { ...event };
-                this.eventDetailsMode = 3;
-            } else {
-                console.error("Invalid event index.");
-            }
+            this.selectedEventIndex = index;
+            this.newEventEdited = { ...event };
+            this.eventDetailsMode = 3;
         },
-          
-        editEventSave() {
-            let validation = this.eventInputsEditValidation();
 
-            if (validation) {
-                this.inputEmpty = true;
-            } else {
-                this.inputEmpty = false;
-                if (this.selectedEventIndex !== null && this.selectedEventIndex !== undefined) {
-                    let editedEvent = { ...this.events[this.selectedEventIndex] };
-            
-                    editedEvent.eventName = this.newEventEdited.eventName;
-                    editedEvent.eventCity = this.newEventEdited.eventCity;
-                    editedEvent.eventCountry = this.newEventEdited.eventCountry;
-                    editedEvent.start = this.newEventEdited.start;
-                    editedEvent.end = this.newEventEdited.end;
-
-                    this.events.splice(this.selectedEventIndex, 1, editedEvent)
+        editEventSave(index) {
+                let validation = this.eventInputsEditValidation();
+    
+                if (validation) {
+                    this.inputEmpty = true;
+                } else {
+                    this.inputEmpty = false;
+                    
+                    if (this.selectedEventIndex !== null && this.selectedEventIndex !== undefined) {
+                        this.searchSortedEvents.splice(index, 1, { ...this.newEventEdited });
+                        this.eventDetailsMode = 1;
+                    }
+    
+                    
                 }
-
-                this.eventDetailsMode = 1;
-            }
-        },
+            },
 
         eventInputsEditValidation(){
             return(
@@ -450,7 +431,6 @@ const app = Vue.createApp({
         },
 
 // formatowanie
-
         dateFormat(date){
             const dateChanged = new Date(date);
 
@@ -514,10 +494,18 @@ const app = Vue.createApp({
                 <ul class="menu-content">
                     <li><a href="sezon.html">Sezon</a></li>
                     <li><a href="kontakt.html">Kontakt</a></li>
+                    <li class="social-icons">
+                        <a href="https://www.instagram.com/maciek_coach/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/m-grabowski/"><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
                 </ul>
                 <ul class="menu-mobile" :class="{ 'show': menuOpen }">
                     <li><a href="sezon.html">Sezon</a></li>
                     <li><a href="kontakt.html">Kontakt</a></li>
+                    <li class="social-icons">
+                        <a href="https://www.instagram.com/maciek_coach/"><i class="fa-brands fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com/in/m-grabowski/"><i class="fa-brands fa-linkedin"></i></a>
+                    </li>
                 </ul>
                 <div id="menu-icon" :class="{'open': menuOpen}" @click="toggleMenuIcon">
                     <div class="bar1"></div>
@@ -630,8 +618,8 @@ const app = Vue.createApp({
             url: "https://danepubliczne.imgw.pl/api/data/synop",
         }).then((response) => {
             this.weatherApi = response.data;
-            console.log(this.weatherApi)
             this.selectedWeather = this.weatherApi[55];
+            // console.log(this.weatherApi)
         }).catch((error) => {
             console.error('Dane pogodowe nie pobrały się')
         });
