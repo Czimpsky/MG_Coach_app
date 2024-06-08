@@ -488,16 +488,16 @@ const app = Vue.createApp({
                     <li><a href="sezon.html">Sezon</a></li>
                     <li><a href="kontakt.html">Kontakt</a></li>
                     <li class="social-icons">
-                        <a href="https://www.instagram.com/maciek_coach/"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/m-grabowski/"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.behance.net/czimpsky"><i class="fa-brands fa-behance"></i></a>
+                        <a href="https://www.linkedin.com/in/m-grabowski/"><i class="fa-brands fa-linkedin-in"></i></a>
                     </li>
                 </ul>
                 <ul class="menu-mobile" :class="{ 'show': menuOpen }">
                     <li><a href="sezon.html">Sezon</a></li>
                     <li><a href="kontakt.html">Kontakt</a></li>
                     <li class="social-icons">
-                        <a href="https://www.instagram.com/maciek_coach/"><i class="fa-brands fa-instagram"></i></a>
-                        <a href="https://www.linkedin.com/in/m-grabowski/"><i class="fa-brands fa-linkedin"></i></a>
+                        <a href="https://www.behance.net/czimpsky"><i class="fa-brands fa-behance"></i></a>
+                        <a href="https://www.linkedin.com/in/m-grabowski/"><i class="fa-brands fa-linkedin-in"></i></a>
                     </li>
                 </ul>
                 <div id="menu-icon" :class="{'open': menuOpen}" @click="toggleMenuIcon">

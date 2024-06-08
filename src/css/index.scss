@@ -89,17 +89,29 @@ body {
                         color: white;
                         font-size: 20px;
                         margin-right: 15px;
+
+                        &:hover {
+                            transition: ease-in-out 0.3s;
+                            transform: scale(1.1);
+                            font-weight: typography.$font-weight-regular;
+                        }
                     }
     
                     a {
                         color: white;
                         text-decoration: none;
                     }
-    
+
                     &:hover {
                         transition: ease-in-out 0.3s;
                         transform: scale(1.1);
                         font-weight: typography.$font-weight-regular;
+                    }
+
+                    &:last-child:hover{
+                        transition: none;
+                        transform: none;
+                        font-weight: typography.$font-weight-light;
                     }
                 }
 
@@ -125,6 +137,12 @@ body {
                         color: white;
                         font-size: 20px;
                         margin-right: 15px;
+
+                        &:hover {
+                            transition: ease-in-out 0.3s;
+                            transform: scale(1.1);
+                            font-weight: typography.$font-weight-regular;
+                        }
                     }
     
                     a {
@@ -136,6 +154,12 @@ body {
                         transition: ease-in-out 0.3s;
                         transform: scale(1.1);
                         font-weight: typography.$font-weight-regular;
+                    }
+
+                    &:last-child:hover{
+                        transition: none;
+                        transform: none;
+                        font-weight: typography.$font-weight-light;
                     }
                 }
             }
